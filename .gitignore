@@ -1,0 +1,91 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.coverage.*
+coverage.xml
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Experiment results and outputs
+# Generated/temporary results (ignored)
+results/*.log
+results/*.out
+results/*.tmp
+results/*.prof
+results/*.pstats
+results/*_cache/
+results/__pycache__/
+# Large artifacts (ignored)
+results/*.npy
+results/*.npz
+results/*.pkl
+results/*.pickle
+results/*.h5
+results/*.hdf5
+# But allow curated summaries and reports (committed)
+# results/*.json
+# results/*.md
+# results/*.png
+# results/*.svg
+# results/index.json
+# results/experiments/
+# results/figures/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Profiling
+*.prof
+*.pstats
+
+# Documentation build
+docs/_build/
+site/
+
+# Pre-commit
+.pre-commit-config.yaml

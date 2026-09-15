@@ -1,0 +1,20 @@
+# Core dependencies
+numpy>=1.24.0
+matplotlib>=3.7.0
+
+# Development dependencies (install with: pip install -e ".[dev]")
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# ruff>=0.1.0
+# mypy>=1.5.0
+# isort>=5.12.0
+# pre-commit>=3.5.0
+
+# Notebook dependencies (install with: pip install -e ".[notebook]")
+# jupyter>=1.0.0
+# ipykernel>=6.25.0
+# nbformat>=5.9.0
+
+# Experiment dependencies (install with: pip install -e ".[experiment]")
+# pandas>=2.0.0
+# scipy>=1.11.0
