@@ -18,7 +18,54 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
-## [Unreleased] — Stage 0: Project Foundation (2026-09-15)
+## [Unreleased]
+
+---
+
+## [0.2.0] — 2026-09-16 (Stage 1: Linear Algebra)
+
+### Added
+- **linear_algebra/vectors.py**: Vector operations — creation, validation, addition, subtraction, scalar multiplication, dot product
+- **linear_algebra/matrices.py**: Matrix operations — creation, validation, addition, subtraction, scalar multiplication, transpose, identity matrix
+- **linear_algebra/operations.py**: Core operations — matrix-vector multiplication, matrix-matrix multiplication (educational triple-loop implementation)
+- **linear_algebra/norms.py**: Norms and distance — L1 norm, L2 norm, Euclidean distance
+- **linear_algebra/similarity.py**: Cosine similarity with explicit zero-vector handling
+- **linear_algebra/geometry.py**: Vector projection, orthogonal decomposition, verification, linear transformations (scaling, rotation, reflection, shear)
+- **linear_algebra/eigen.py**: Eigenvalue/eigenvector decomposition (NumPy reference), eigenvector verification, condition number
+
+### Tests
+- 127 tests across 8 test files (all passing)
+- Unit tests for all operations
+- Mathematical property tests (commutativity, associativity, distributivity, triangle inequality)
+- Numerical verification tests comparing all implementations against NumPy
+- Edge case tests (empty inputs, mismatched dimensions, zero vectors, scalars)
+
+### Examples
+- examples/vector_operations.py — Vectors, dot product, norms, cosine similarity, neuron computation
+- examples/matrix_operations.py — Matrices, linear layers, batch processing, non-commutativity
+- examples/vector_projection.py — Projections, orthogonal decomposition, linear transformations
+
+### Changed
+- Updated README.md with Stage 1 status, usage examples, roadmap
+- Updated docs/03_PROJECT_PLAN.md — Stage 1 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 1 completion entry
+- Updated docs/13_LEARNINGS.md — Stage 1 learnings
+- Updated docs/14_CHANGELOG.md — This entry
+- Updated pyproject.toml — Added test ignores for mathematical notation (N806, E741, B905)
+- Version bumped to 0.2.0
+
+### Design Decisions
+- Functions over classes for mathematical operations
+- Educational triple-loop implementations alongside NumPy for verification
+- Explicit zero-vector error handling for cosine similarity
+- NumPy reference for eigenvalue decomposition (from-scratch solver too complex for this stage)
+- Projection decomposition: a = proj_b(a) + orth_b(a)
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
+## [0.1.0] — 2026-09-15 (Stage 0 Complete)
 
 ### Added
 - Initial repository structure with `src/`, `tests/`, `docs/`, `examples/`, `notebooks/`, `experiments/`, `scripts/`, `results/` directories

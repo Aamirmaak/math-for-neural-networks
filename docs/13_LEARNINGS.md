@@ -213,3 +213,26 @@ As each stage completes, specific entries will be added to this document:
 ```
 
 **Current Status:** All learnings are INTENDED. No learnings confirmed yet.
+
+---
+
+## Stage 1: Linear Algebra — Learnings (2026-09-16)
+
+### Confirmed
+- Dot product implementation (triple-loop) produces identical results to NumPy within 1e-10
+- Matrix multiplication triple-loop correctly implements C_ij = sum_k A_ik * B_kj
+- Projection formula proj_b(a) = ((a · b) / (b · b)) * b decomposes vectors correctly
+- Cosine similarity range is guaranteed [-1, 1] for non-zero vectors
+- L2 norm squared equals self dot product: ||v||^2 = v · v
+- Eigenvalue relationship A v = lambda v verified numerically for random symmetric matrices
+- Matrix multiplication is NOT commutative: AB != BA (verified with concrete examples)
+
+### Surprises
+- The educational triple-loop matrix multiplication is ~1000x slower than NumPy for large matrices, but that's expected and fine for educational purposes
+
+### Corrections
+- None yet
+
+### Open Questions
+- How do conditioning and numerical stability affect very large matrix operations?
+- When does from-scratch eigenvalue implementation become educational rather than tedious?

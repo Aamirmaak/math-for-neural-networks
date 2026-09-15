@@ -5,7 +5,7 @@
 | Stage | Name | Focus | Dependencies | Status |
 |-------|------|-------|--------------|--------|
 | 0 | Project Definition & Documentation | Repo structure, docs, tooling, planning | None | ✅ Complete |
-| 1 | Linear Algebra Primitives | Scalars, vectors, matrices, core ops | Stage 0 | 📋 Planned |
+| 1 | Linear Algebra Primitives | Scalars, vectors, matrices, core ops | Stage 0 | ✅ Implemented |
 | 2 | Calculus & Numerical Differentiation | Derivatives, gradients, chain rule, verification | Stage 1 | 📋 Planned |
 | 3 | Probability & Statistics Foundations | Distributions, entropy, cross-entropy, MLE | Stage 1 | 📋 Planned |
 | 4 | Optimization Algorithms | GD, SGD, momentum, Adam | Stage 2 | 📋 Planned |

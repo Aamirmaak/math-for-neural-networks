@@ -1,6 +1,6 @@
 # Math for Neural Networks
 
-**Status: Stage 0 — Project Definition & Documentation (Pre-Alpha)**
+**Status: Stage 1 — Linear Algebra Primitives (Pre-Alpha)**
 
 An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification.
 
@@ -39,9 +39,31 @@ This project addresses that educational gap by providing a programmable mathemat
 
 ## Current Status
 
+**Stage 1 Implemented:** Linear algebra primitives — vectors, matrices, operations, norms, cosine similarity, projections, linear transformations, eigenvalues/eigenvectors. All operations tested and numerically verified against NumPy.
+
 **Stage 0 Complete:** Project foundation established — documentation, architecture, repository structure, testing strategy, experiment strategy, and distribution plan.
 
-**No mathematical functionality implemented yet.** This is by design — Stage 0 is documentation and planning only.
+### Implemented (Stage 1)
+- Vector operations: addition, subtraction, scalar multiplication, dot product
+- Matrix operations: addition, subtraction, scalar multiplication, transpose, identity
+- Matrix multiplication (educational triple-loop implementation)
+- Matrix-vector multiplication
+- Norms: L1 (Manhattan), L2 (Euclidean), Euclidean distance
+- Cosine similarity with zero-vector handling
+- Vector projection and orthogonal decomposition
+- Linear transformations: scaling, rotation, reflection, shear
+- Eigenvalue/eigenvector decomposition and verification
+- Condition number computation
+- Numerical verification against NumPy for all operations
+- 127 passing tests (unit + numerical verification)
+
+### Planned
+- Calculus & numerical differentiation
+- Probability & statistics
+- Optimization algorithms
+- Neural-network mathematics
+- Backpropagation & training loops
+- PyTorch comparison
 
 ## Planned Capabilities (MVP Roadmap)
 
@@ -97,13 +119,34 @@ pip install -e ".[experiment]"
 ## Usage
 
 ```python
-# After implementation begins
-from math_for_neural_networks import linear_algebra, calculus, probability
+from math_for_neural_networks.linear_algebra import (
+    dot_product,
+    vector_add,
+    l2_norm,
+    cosine_similarity,
+    matrix_multiply,
+    matrix_vector_multiply,
+    project_vector,
+)
 
-# Example (planned):
-# v = Vector([1, 2, 3])
-# w = Vector([4, 5, 6])
-# dot_product = v.dot(w)
+# Vectors
+a = [1, 2, 3]
+b = [4, 5, 6]
+print(dot_product(a, b))          # 32.0
+print(vector_add(a, b))           # [5, 7, 9]
+print(l2_norm(a))                 # 3.7416...
+
+# Cosine similarity
+print(cosine_similarity(a, b))    # 0.9746...
+
+# Matrices
+W = [[1, 2], [3, 4]]
+x = [5, 6]
+print(matrix_vector_multiply(W, x))  # [17, 39]
+
+# Projection
+proj = project_vector([3, 4], [1, 0])
+print(proj)                       # [3, 0]
 ```
 
 ## Repository Structure
@@ -178,7 +221,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Limitations
 
-- **Pre-alpha:** No mathematical functionality implemented yet
+- **Pre-alpha:** Only linear algebra implemented so far
 - **Educational focus:** Not a production ML framework
 - **No GPU acceleration:** Pure CPU/NumPy implementation
 - **No automatic differentiation:** Manual implementation for learning purposes
@@ -189,7 +232,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 | Stage | Focus | Status |
 |-------|-------|--------|
 | 0 | Project definition & documentation | ✅ Complete |
-| 1 | Linear algebra primitives | 📋 Planned |
+| 1 | Linear algebra primitives | ✅ Implemented |
 | 2 | Calculus & numerical differentiation | 📋 Planned |
 | 3 | Probability & statistics foundations | 📋 Planned |
 | 4 | Optimization algorithms | 📋 Planned |

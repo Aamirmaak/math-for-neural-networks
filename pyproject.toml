@@ -100,7 +100,7 @@ select = [
 ignore = [
     "E501",  # line too long (handled by formatter)
 ]
-per-file-ignores = { "tests/*" = ["S101", "T201"] }
+per-file-ignores = { "tests/*" = ["S101", "T201", "N806", "E741", "B905"] }
 
 [tool.ruff.format]
 quote-style = "double"
