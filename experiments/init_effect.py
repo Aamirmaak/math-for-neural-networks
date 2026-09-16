@@ -51,8 +51,12 @@ def run_experiment() -> None:
 
     for label, start in starting_points:
         result = gradient_descent(
-            f_quad, grad_quad, start,
-            learning_rate=0.3, max_iterations=100, param_tol=1e-8,
+            f_quad,
+            grad_quad,
+            start,
+            learning_rate=0.3,
+            max_iterations=100,
+            param_tol=1e-8,
         )
         print(
             f"  {label:>20} | "
@@ -70,8 +74,8 @@ def run_experiment() -> None:
 
     def grad_rosen(params: np.ndarray) -> np.ndarray:
         x, y = params[0], params[1]
-        dx = -2.0 * (1 - x) - 400.0 * x * (y - x ** 2)
-        dy = 200.0 * (y - x ** 2)
+        dx = -2.0 * (1 - x) - 400.0 * x * (y - x**2)
+        dy = 200.0 * (y - x**2)
         return np.array([dx, dy])
 
     starting_points_rosen = [
@@ -84,13 +88,19 @@ def run_experiment() -> None:
 
     true_min = np.array([1.0, 1.0])
     print(f"  Learning rate: 0.001, Max iterations: 5000")
-    print(f"\n  {'Start':>12} | {'Final (x,y)':>18} | {'f(final)':>12} | {'Dist':>8} | {'Iters':>6}")
+    print(
+        f"\n  {'Start':>12} | {'Final (x,y)':>18} | {'f(final)':>12} | {'Dist':>8} | {'Iters':>6}"
+    )
     print("  " + "-" * 65)
 
     for label, start in starting_points_rosen:
         result = gradient_descent(
-            f_rosen, grad_rosen, start,
-            learning_rate=0.001, max_iterations=5000, param_tol=1e-10,
+            f_rosen,
+            grad_rosen,
+            start,
+            learning_rate=0.001,
+            max_iterations=5000,
+            param_tol=1e-10,
         )
         dist = np.sqrt(np.sum((result.parameters - true_min) ** 2))
         print(
@@ -112,7 +122,7 @@ def run_experiment() -> None:
 
     for d in distances:
         result = gradient_descent(
-            lambda x: float(np.sum(x ** 2)),
+            lambda x: float(np.sum(x**2)),
             lambda x: 2.0 * x,
             np.array([d]),
             learning_rate=0.3,

@@ -67,8 +67,10 @@ def run_experiment() -> None:
     print(f"\n  Gradient norm over training:")
     milestones = [0, 50, 100, 200, 300, 400, 499]
     for i in milestones:
-        print(f"    Iter {i:>3}: loss={metrics.loss_history[i]:.6f}, "
-              f"grad_norm={metrics.gradient_norm_history[i]:.6f}")
+        print(
+            f"    Iter {i:>3}: loss={metrics.loss_history[i]:.6f}, "
+            f"grad_norm={metrics.gradient_norm_history[i]:.6f}"
+        )
 
     print("\n  CONCLUSION: Network learns the task successfully.")
     print("  Loss decreases and gradients converge toward zero.")

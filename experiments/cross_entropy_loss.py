@@ -38,7 +38,9 @@ def run_experiment() -> None:
         ce = cross_entropy(target, predicted)
         neg_log_p0 = -np.log(p0)
 
-        print(f"  {p0:>6.3f} | [{remaining:.3f}, {remaining:.3f}] | {ce:>10.4f} | {neg_log_p0:>10.4f}")
+        print(
+            f"  {p0:>6.3f} | [{remaining:.3f}, {remaining:.3f}] | {ce:>10.4f} | {neg_log_p0:>10.4f}"
+        )
 
     print("\n  OBSERVATIONS:")
     print("  - Cross-entropy = -log(p0) for one-hot targets")

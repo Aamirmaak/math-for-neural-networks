@@ -179,7 +179,7 @@ class TestNumericalVsAutogradDetailed:
             return c.data
 
         def ref(x: float) -> float:
-            s = 1.0 / (1.0 + math.exp(-x**2))
+            s = 1.0 / (1.0 + math.exp(-(x**2)))
             return s * (1.0 - s) * 2.0 * x
 
         for x in [-2.0, -1.0, 0.5, 1.0, 2.0]:

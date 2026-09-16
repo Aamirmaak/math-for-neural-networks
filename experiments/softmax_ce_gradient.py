@@ -33,7 +33,7 @@ def run_experiment() -> None:
     ]
 
     for i, (logits, targets) in enumerate(test_cases):
-        print(f"\n  Test case {i+1}:")
+        print(f"\n  Test case {i + 1}:")
         print(f"    logits = {logits}")
         print(f"    targets = {targets}")
 

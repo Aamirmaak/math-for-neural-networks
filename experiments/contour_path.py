@@ -64,8 +64,12 @@ def run_experiment() -> None:
 
     # Run GD from (4, 4)
     result = gradient_descent(
-        f_quad, grad_quad, np.array([4.0, 4.0]),
-        learning_rate=0.3, max_iterations=20, param_tol=1e-8,
+        f_quad,
+        grad_quad,
+        np.array([4.0, 4.0]),
+        learning_rate=0.3,
+        max_iterations=20,
+        param_tol=1e-8,
     )
     print(f"\n  Starting at (4, 4), lr=0.3")
     print(f"  Final: ({result.parameters[0]:.4f}, {result.parameters[1]:.4f})")
@@ -81,8 +85,8 @@ def run_experiment() -> None:
 
     def grad_rosen(params: np.ndarray) -> np.ndarray:
         x, y = params[0], params[1]
-        dx = -2.0 * (1 - x) - 400.0 * x * (y - x ** 2)
-        dy = 200.0 * (y - x ** 2)
+        dx = -2.0 * (1 - x) - 400.0 * x * (y - x**2)
+        dy = 200.0 * (y - x**2)
         return np.array([dx, dy])
 
     x_range = np.linspace(-2, 3, 50)
@@ -97,13 +101,14 @@ def run_experiment() -> None:
 
     # Run GD from (-1, 1)
     result = gradient_descent(
-        f_rosen, grad_rosen, np.array([-1.0, 1.0]),
-        learning_rate=0.001, max_iterations=5000, param_tol=1e-10,
+        f_rosen,
+        grad_rosen,
+        np.array([-1.0, 1.0]),
+        learning_rate=0.001,
+        max_iterations=5000,
+        param_tol=1e-10,
     )
-    dist = np.sqrt(
-        (result.parameters[0] - 1.0) ** 2
-        + (result.parameters[1] - 1.0) ** 2
-    )
+    dist = np.sqrt((result.parameters[0] - 1.0) ** 2 + (result.parameters[1] - 1.0) ** 2)
     print(f"\n  Starting at (-1, 1), lr=0.001")
     print(f"  Final: ({result.parameters[0]:.6f}, {result.parameters[1]:.6f})")
     print(f"  Final loss: {result.final_objective:.10f}")

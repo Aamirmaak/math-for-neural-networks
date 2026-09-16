@@ -86,10 +86,12 @@ class TestGradientCheck:
             return float(math.sin(x[0]) * math.cos(x[1]))
 
         def df(x: np.ndarray) -> np.ndarray:
-            return np.array([
-                math.cos(x[0]) * math.cos(x[1]),
-                -math.sin(x[0]) * math.sin(x[1]),
-            ])
+            return np.array(
+                [
+                    math.cos(x[0]) * math.cos(x[1]),
+                    -math.sin(x[0]) * math.sin(x[1]),
+                ]
+            )
 
         result = gradient_check(f, df, np.array([0.5, 0.5]))
         assert result["passed"]

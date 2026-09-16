@@ -49,8 +49,7 @@ class TestGradientVerification:
             p_plus[i] += h
             p_minus[i] -= h
             numerical[i] = (
-                linear_regression_loss(p_plus, X, y)
-                - linear_regression_loss(p_minus, X, y)
+                linear_regression_loss(p_plus, X, y) - linear_regression_loss(p_minus, X, y)
             ) / (2 * h)
         np.testing.assert_array_almost_equal(
             linear_regression_gradient(params, X, y), numerical, decimal=5
@@ -62,7 +61,8 @@ class TestConvergenceVerification:
 
     def test_gd_quadratic_minimum_at_zero(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([10.0]),
             learning_rate=0.1,
             max_iterations=1000,
@@ -71,7 +71,8 @@ class TestConvergenceVerification:
 
     def test_momentum_quadratic_minimum_at_zero(self):
         result = momentum(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([10.0]),
             learning_rate=0.1,
             beta=0.9,
@@ -81,7 +82,8 @@ class TestConvergenceVerification:
 
     def test_adam_quadratic_minimum_at_zero(self):
         result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([10.0]),
             learning_rate=0.1,
             max_iterations=1000,
@@ -102,7 +104,9 @@ class TestConvergenceVerification:
                 kwargs["beta"] = 0.9
             result = opt_fn(**kwargs)
             np.testing.assert_array_almost_equal(
-                result.parameters, [0.0, 0.0], decimal=2,
+                result.parameters,
+                [0.0, 0.0],
+                decimal=2,
                 err_msg=f"{opt_fn.__name__} failed to converge on sphere",
             )
 
@@ -110,14 +114,18 @@ class TestConvergenceVerification:
 class TestObjectiveDecrease:
     """Verify that objective value decreases over iterations."""
 
-    @pytest.mark.parametrize("opt_fn,kwargs", [
-        (gradient_descent, {"learning_rate": 0.1}),
-        (momentum, {"learning_rate": 0.1, "beta": 0.9}),
-        (adam, {"learning_rate": 0.1}),
-    ])
+    @pytest.mark.parametrize(
+        "opt_fn,kwargs",
+        [
+            (gradient_descent, {"learning_rate": 0.1}),
+            (momentum, {"learning_rate": 0.1, "beta": 0.9}),
+            (adam, {"learning_rate": 0.1}),
+        ],
+    )
     def test_objective_decreases(self, opt_fn, kwargs):
         result = opt_fn(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             max_iterations=100,
             **kwargs,

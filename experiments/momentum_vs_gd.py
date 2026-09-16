@@ -43,8 +43,12 @@ def run_experiment() -> None:
 
     # Part 1: GD baseline
     gd_result = gradient_descent(
-        f, grad, x0.copy(),
-        learning_rate=lr, max_iterations=max_iter, param_tol=1e-8,
+        f,
+        grad,
+        x0.copy(),
+        learning_rate=lr,
+        max_iterations=max_iter,
+        param_tol=1e-8,
     )
 
     # Part 2: Momentum with different betas
@@ -52,12 +56,19 @@ def run_experiment() -> None:
 
     print(f"\n  {'Method':>12} | {'f(final)':>12} | {'Iters':>6} | {'Converged':>10}")
     print("  " + "-" * 45)
-    print(f"  {'GD':>12} | {gd_result.final_objective:>12.8f} | {gd_result.iterations:>6} | {str(gd_result.converged):>10}")
+    print(
+        f"  {'GD':>12} | {gd_result.final_objective:>12.8f} | {gd_result.iterations:>6} | {str(gd_result.converged):>10}"
+    )
 
     for beta in betas:
         result = momentum(
-            f, grad, x0.copy(),
-            learning_rate=lr, beta=beta, max_iterations=max_iter, param_tol=1e-8,
+            f,
+            grad,
+            x0.copy(),
+            learning_rate=lr,
+            beta=beta,
+            max_iterations=max_iter,
+            param_tol=1e-8,
         )
         print(
             f"  {'beta=' + str(beta):>12} | {result.final_objective:>12.8f} | "
@@ -70,12 +81,21 @@ def run_experiment() -> None:
     print("  " + "-" * 48)
 
     gd_hist = gradient_descent(
-        f, grad, x0.copy(),
-        learning_rate=lr, max_iterations=max_iter, param_tol=1e-8,
+        f,
+        grad,
+        x0.copy(),
+        learning_rate=lr,
+        max_iterations=max_iter,
+        param_tol=1e-8,
     ).objective_history
     mom_hist = momentum(
-        f, grad, x0.copy(),
-        learning_rate=lr, beta=0.9, max_iterations=max_iter, param_tol=1e-8,
+        f,
+        grad,
+        x0.copy(),
+        learning_rate=lr,
+        beta=0.9,
+        max_iterations=max_iter,
+        param_tol=1e-8,
     ).objective_history
 
     for i in range(0, max_iter, 3):

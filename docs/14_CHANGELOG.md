@@ -22,6 +22,54 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.8.0] — 2026-09-16 (Stage 7: Integrated Experiments & Visualization)
+
+### Added
+- **experiments/experiment_utils.py**: Shared experiment utilities (setup_seed, ExperimentResult, save_fig, print_table, ensure_results_dir)
+- **experiments/01_vector_geometry.py**: Vector geometry relationships (angle, dot product, cosine similarity, Euclidean distance)
+- **experiments/02_matrix_transformations.py**: 2D linear transformations (scaling, rotation, reflection, shear)
+- **experiments/03_derivative_accuracy.py**: Forward vs central finite differences across step sizes
+- **experiments/04_gradient_field.py**: Contour lines and gradient vectors for f(x,y) = x^2+y^2
+- **experiments/05_learning_rate.py**: Gradient descent with different learning rates
+- **experiments/06_optimizer_comparison.py**: GD vs Momentum vs Adam on Rosenbrock function
+- **experiments/07_activation_functions.py**: Sigmoid, tanh, ReLU, GELU comparison
+- **experiments/08_softmax_stability.py**: Naive vs stable softmax numerical stability
+- **experiments/09_cross_entropy.py**: Cross-entropy loss vs predicted probability
+- **experiments/10_backpropagation.py**: Computational graph forward + backward pass
+- **experiments/11_gradient_checking.py**: Analytical vs numerical gradient verification
+- **experiments/12_toy_training.py**: Small neural network training on toy dataset
+- **experiments/13_gradient_flow.py**: Gradient magnitudes through layers during training
+- **experiments/14_vanishing_exploding.py**: Gradient magnitude through sigmoid layers
+- **experiments/15_embedding_geometry.py**: Toy embedding vectors, similarities, distances
+- **experiments/16_attention.py**: Scaled dot-product attention step by step
+- **experiments/17_attention_scaling.py**: Effect of 1/sqrt(d_k) on attention weights
+- **experiments/18_integrated_demo.py**: Complete training pipeline with intermediate math
+
+### Tests
+- 10 new tests (703 total)
+- Experiment utility tests (seed, result, directory, table, figure)
+- Integration test: complete training pipeline (forward, loss, backward, update)
+
+### Changed
+- Updated README.md with Stage 7 status
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.8.0
+- Updated docs/03_PROJECT_PLAN.md — Stage 7 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 7 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+- Updated pyproject.toml — Added per-file-ignores for experiments directory
+
+### Design Decisions
+- Flat experiment structure (individual scripts) over nested directories
+- ExperimentResult dataclass for structured results
+- Reproducible seeds for all stochastic experiments
+- Matplotlib Agg backend for headless environments
+- Per-file ruff ignores for experiments (T201 print statements allowed)
+- Integration test covers complete mathematical pipeline
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.7.0] — 2026-09-16 (Stage 6: Backpropagation & Training)
 
 ### Added

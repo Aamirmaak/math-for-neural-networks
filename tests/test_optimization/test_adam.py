@@ -76,7 +76,8 @@ class TestAdamStep:
 class TestAdam:
     def test_quadratic_convergence(self):
         result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=1000,
@@ -86,7 +87,8 @@ class TestAdam:
 
     def test_sphere_2d_convergence(self):
         result = adam(
-            sphere, sphere_gradient,
+            sphere,
+            sphere_gradient,
             initial_position=np.array([3.0, -4.0]),
             learning_rate=0.1,
             max_iterations=1000,
@@ -99,14 +101,16 @@ class TestAdam:
         from math_for_neural_networks.optimization.gradient_descent import gradient_descent
 
         gd_result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([10.0]),
             learning_rate=0.01,
             max_iterations=5000,
             grad_tol=1e-6,
         )
         adam_result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([10.0]),
             learning_rate=0.01,
             max_iterations=5000,
@@ -119,7 +123,8 @@ class TestAdam:
     def test_invalid_beta1(self):
         with pytest.raises(ValueError, match="beta1"):
             adam(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 beta1=1.0,
             )
@@ -127,7 +132,8 @@ class TestAdam:
     def test_invalid_beta2(self):
         with pytest.raises(ValueError, match="beta2"):
             adam(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 beta2=1.0,
             )
@@ -135,7 +141,8 @@ class TestAdam:
     def test_invalid_epsilon(self):
         with pytest.raises(ValueError, match="epsilon"):
             adam(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 epsilon=0.0,
             )
@@ -143,7 +150,8 @@ class TestAdam:
     def test_invalid_learning_rate(self):
         with pytest.raises(ValueError, match="learning_rate"):
             adam(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 learning_rate=-0.1,
             )
@@ -151,14 +159,16 @@ class TestAdam:
     def test_invalid_max_iterations(self):
         with pytest.raises(ValueError, match="max_iterations"):
             adam(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 max_iterations=0,
             )
 
     def test_objective_decreases(self):
         result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=100,
@@ -167,7 +177,8 @@ class TestAdam:
 
     def test_records_history(self):
         result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=50,
@@ -178,7 +189,8 @@ class TestAdam:
 
     def test_rosenbrock(self):
         result = adam(
-            rosenbrock, rosenbrock_gradient,
+            rosenbrock,
+            rosenbrock_gradient,
             initial_position=np.array([0.0, 0.0]),
             learning_rate=0.001,
             max_iterations=10000,
@@ -189,7 +201,8 @@ class TestAdam:
 
     def test_gradient_norm_decreases(self):
         result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=500,
@@ -198,7 +211,8 @@ class TestAdam:
 
     def test_parameter_history_first_element(self):
         result = adam(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=5,

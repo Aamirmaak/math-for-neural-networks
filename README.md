@@ -1,6 +1,6 @@
 # Math for Neural Networks
 
-**Status: Stage 6 — Backpropagation & Training (Pre-Alpha)**
+**Status: Stage 7 — Integrated Experiments & Visualization (Pre-Alpha)**
 
 An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification.
 
@@ -39,7 +39,9 @@ This project addresses that educational gap by providing a programmable mathemat
 
 ## Current Status
 
-**Stage 6 Implemented:** Backpropagation & Training — scalar autograd engine, gradient checking, affine/activation/loss backpropagation, simple neural network forward/backward, training loop with SGD. All verified with 87 new tests.
+**Stage 7 Implemented:** Integrated Experiments & Visualization — 18 educational experiments covering vector geometry, matrix transformations, derivatives, gradients, learning rates, optimizers, activations, softmax stability, cross-entropy, backpropagation, gradient checking, toy training, gradient flow, vanishing gradients, embeddings, attention, and an integrated demonstration. All experiments produce actual results and visualizations.
+
+**Stage 6 Implemented:** Backpropagation & Training — scalar autograd engine, gradient checking, affine/activation/loss backpropagation, simple neural network forward/backward, training loop with SGD. All verified with 87 tests.
 
 **Stage 5 Implemented:** Neural Network Mathematics — affine transformation, activation functions (sigmoid, tanh, ReLU, GELU), softmax, loss functions (MSE, BCE, CCE, logits+CE), attention mathematics, layer normalization. All verified with 137 tests.
 
@@ -310,7 +312,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Limitations
 
-- **Pre-alpha:** Stages 1-6 implemented; advanced training and experiments pending
+- **Pre-alpha:** Stages 1-7 implemented; PyTorch comparison pending
 - **Educational focus:** Not a production ML framework
 - **No GPU acceleration:** Pure CPU/NumPy implementation
 - **No automatic differentiation:** Manual implementation for learning purposes
@@ -327,7 +329,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 | 4 | Optimization algorithms | ✅ Implemented |
 | 5 | Neural-network mathematics | ✅ Implemented |
 | 6 | Backpropagation & training loops | ✅ Implemented |
-| 7 | Experiments & visualization suite | 📋 Planned |
+| 7 | Experiments & visualization suite | ✅ Implemented |
 | 8 | PyTorch comparison/validation | 📋 Planned |
 
 Future scope (deferred): tensor decompositions, eigenvalues/eigenvectors, advanced optimization, attention mathematics, transformer demonstrations, interactive visualizations, benchmark suites.

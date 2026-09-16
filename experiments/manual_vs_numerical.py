@@ -56,8 +56,12 @@ def run_experiment() -> None:
     print(f"  w={w}, b={b}")
     print(f"  {'Gradient':>10} | {'Manual':>12} | {'Numerical':>12} | {'Error':>12}")
     print("  " + "-" * 55)
-    print(f"  {'dL/dw':>10} | {dL_dw:>12.8f} | {dL_dw_num:>12.8f} | {abs(dL_dw - dL_dw_num):>12.2e}")
-    print(f"  {'dL/db':>10} | {dL_db:>12.8f} | {dL_db_num:>12.8f} | {abs(dL_db - dL_db_num):>12.2e}")
+    print(
+        f"  {'dL/dw':>10} | {dL_dw:>12.8f} | {dL_dw_num:>12.8f} | {abs(dL_dw - dL_dw_num):>12.2e}"
+    )
+    print(
+        f"  {'dL/db':>10} | {dL_db:>12.8f} | {dL_db_num:>12.8f} | {abs(dL_db - dL_db_num):>12.2e}"
+    )
 
     # Test 2: Two-layer network with autograd
     print("\n  Test 2: Two-Layer Network (Autograd)")
@@ -100,8 +104,12 @@ def run_experiment() -> None:
     print(f"  w1={w1}, w2={w2}")
     print(f"  {'Gradient':>10} | {'Autograd':>12} | {'Numerical':>12} | {'Error':>12}")
     print("  " + "-" * 55)
-    print(f"  {'dL/dw1':>10} | {w1_v.grad:>12.8f} | {dw1_num:>12.8f} | {abs(w1_v.grad - dw1_num):>12.2e}")
-    print(f"  {'dL/dw2':>10} | {w2_v.grad:>12.8f} | {dw2_num:>12.8f} | {abs(w2_v.grad - dw2_num):>12.2e}")
+    print(
+        f"  {'dL/dw1':>10} | {w1_v.grad:>12.8f} | {dw1_num:>12.8f} | {abs(w1_v.grad - dw1_num):>12.2e}"
+    )
+    print(
+        f"  {'dL/dw2':>10} | {w2_v.grad:>12.8f} | {dw2_num:>12.8f} | {abs(w2_v.grad - dw2_num):>12.2e}"
+    )
 
     # Test 3: Gradient accumulation
     print("\n  Test 3: Gradient Accumulation")
@@ -116,7 +124,9 @@ def run_experiment() -> None:
         f = x_v * x_v + x_v
         f.backward()
         expected = 2 * x_val + 1
-        print(f"  {x_val:>6.1f} | {x_v.grad:>12.6f} | {expected:>12.6f} | {abs(x_v.grad - expected):>12.2e}")
+        print(
+            f"  {x_val:>6.1f} | {x_v.grad:>12.6f} | {expected:>12.6f} | {abs(x_v.grad - expected):>12.2e}"
+        )
 
     print("\n  CONCLUSION: Manual backpropagation matches numerical gradients")
     print("  within floating-point precision. The implementation is correct.")

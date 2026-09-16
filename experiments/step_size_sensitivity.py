@@ -43,7 +43,13 @@ def demonstrate_step_size_sensitivity() -> None:
 
     test_cases = [
         (quadratic, quadratic_derivative, 3.0, 6.0, "f(x) = x², f'(3) = 6"),
-        (sin_func, sin_derivative, np.pi / 4, np.cos(np.pi / 4), "f(x) = sin(x), f'(π/4) = cos(π/4)"),
+        (
+            sin_func,
+            sin_derivative,
+            np.pi / 4,
+            np.cos(np.pi / 4),
+            "f(x) = sin(x), f'(π/4) = cos(π/4)",
+        ),
         (exp_func, exp_derivative, 1.0, np.e, "f(x) = eˣ, f'(1) = e"),
     ]
 
@@ -117,10 +123,8 @@ def demonstrate_forward_vs_central() -> None:
         cent = central_difference(f, x_val, h)
         fwd_err = abs(fwd - true_val)
         cent_err = abs(cent - true_val)
-        ratio = cent_err / fwd_err if fwd_err > 0 else float('nan')
-        print(
-            f"{h:>12.0e} | {fwd_err:>15.2e} | {cent_err:>15.2e} | {ratio:>15.4f}"
-        )
+        ratio = cent_err / fwd_err if fwd_err > 0 else float("nan")
+        print(f"{h:>12.0e} | {fwd_err:>15.2e} | {cent_err:>15.2e} | {ratio:>15.4f}")
 
     print(f"\nCentral difference is typically ~100x more accurate for smooth functions.")
 

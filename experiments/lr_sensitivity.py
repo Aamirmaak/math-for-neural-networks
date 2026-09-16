@@ -33,7 +33,23 @@ def run_experiment() -> None:
         return 2.0 * x
 
     x0 = np.array([5.0])
-    learning_rates = [0.01, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.45, 0.49, 0.5, 0.55, 0.6, 0.8, 0.99]
+    learning_rates = [
+        0.01,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.4,
+        0.45,
+        0.49,
+        0.5,
+        0.55,
+        0.6,
+        0.8,
+        0.99,
+    ]
 
     print(f"\n  Function: f(x) = x^2")
     print(f"  Starting point: x = 5.0")
@@ -43,7 +59,9 @@ def run_experiment() -> None:
 
     for lr in learning_rates:
         result = gradient_descent(
-            f, grad, x0.copy(),
+            f,
+            grad,
+            x0.copy(),
             learning_rate=lr,
             max_iterations=100,
             param_tol=1e-8,

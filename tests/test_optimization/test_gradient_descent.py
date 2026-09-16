@@ -38,36 +38,48 @@ class TestDiagnostics:
 
     def test_check_convergence_gradient(self):
         converged, reason = check_convergence(
-            gradient_norm=1e-8, objective_change=1.0,
-            parameter_change=1.0, grad_tol=1e-6,
-            obj_tol=1e-12, param_tol=1e-8,
+            gradient_norm=1e-8,
+            objective_change=1.0,
+            parameter_change=1.0,
+            grad_tol=1e-6,
+            obj_tol=1e-12,
+            param_tol=1e-8,
         )
         assert converged
         assert "gradient_norm" in reason
 
     def test_check_convergence_objective(self):
         converged, reason = check_convergence(
-            gradient_norm=1.0, objective_change=1e-14,
-            parameter_change=1.0, grad_tol=1e-6,
-            obj_tol=1e-12, param_tol=1e-8,
+            gradient_norm=1.0,
+            objective_change=1e-14,
+            parameter_change=1.0,
+            grad_tol=1e-6,
+            obj_tol=1e-12,
+            param_tol=1e-8,
         )
         assert converged
         assert "objective_change" in reason
 
     def test_check_convergence_parameter(self):
         converged, reason = check_convergence(
-            gradient_norm=1.0, objective_change=1.0,
-            parameter_change=1e-10, grad_tol=1e-6,
-            obj_tol=1e-12, param_tol=1e-8,
+            gradient_norm=1.0,
+            objective_change=1.0,
+            parameter_change=1e-10,
+            grad_tol=1e-6,
+            obj_tol=1e-12,
+            param_tol=1e-8,
         )
         assert converged
         assert "parameter_change" in reason
 
     def test_check_no_convergence(self):
         converged, _ = check_convergence(
-            gradient_norm=1.0, objective_change=1.0,
-            parameter_change=1.0, grad_tol=1e-6,
-            obj_tol=1e-12, param_tol=1e-8,
+            gradient_norm=1.0,
+            objective_change=1.0,
+            parameter_change=1.0,
+            grad_tol=1e-6,
+            obj_tol=1e-12,
+            param_tol=1e-8,
         )
         assert not converged
 
@@ -80,7 +92,8 @@ class TestDiagnostics:
 class TestGradientDescent:
     def test_quadratic_convergence(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=500,
@@ -90,7 +103,8 @@ class TestGradientDescent:
 
     def test_quadratic_reaches_minimum(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([10.0]),
             learning_rate=0.1,
             max_iterations=1000,
@@ -100,7 +114,8 @@ class TestGradientDescent:
 
     def test_sphere_2d_convergence(self):
         result = gradient_descent(
-            sphere, sphere_gradient,
+            sphere,
+            sphere_gradient,
             initial_position=np.array([3.0, -4.0]),
             learning_rate=0.1,
             max_iterations=500,
@@ -110,7 +125,8 @@ class TestGradientDescent:
 
     def test_objective_decreases(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=100,
@@ -121,7 +137,8 @@ class TestGradientDescent:
 
     def test_gradient_norm_decreases(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=500,
@@ -130,7 +147,8 @@ class TestGradientDescent:
 
     def test_records_history(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=50,
@@ -142,7 +160,8 @@ class TestGradientDescent:
 
     def test_no_history(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=50,
@@ -153,7 +172,8 @@ class TestGradientDescent:
     def test_invalid_learning_rate(self):
         with pytest.raises(ValueError, match="learning_rate"):
             gradient_descent(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 learning_rate=-0.1,
             )
@@ -161,7 +181,8 @@ class TestGradientDescent:
     def test_zero_learning_rate(self):
         with pytest.raises(ValueError, match="learning_rate"):
             gradient_descent(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 learning_rate=0.0,
             )
@@ -169,14 +190,16 @@ class TestGradientDescent:
     def test_invalid_max_iterations(self):
         with pytest.raises(ValueError, match="max_iterations"):
             gradient_descent(
-                quadratic, quadratic_gradient,
+                quadratic,
+                quadratic_gradient,
                 initial_position=np.array([5.0]),
                 max_iterations=0,
             )
 
     def test_small_lr_slow_convergence(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.001,
             max_iterations=100,
@@ -188,7 +211,8 @@ class TestGradientDescent:
     def test_large_lr_oscillation(self):
         # Learning rate too large for x^2 should cause oscillation
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([1.0]),
             learning_rate=1.5,
             max_iterations=100,
@@ -199,7 +223,8 @@ class TestGradientDescent:
 
     def test_rosenbrock_from_near_minimum(self):
         result = gradient_descent(
-            rosenbrock, rosenbrock_gradient,
+            rosenbrock,
+            rosenbrock_gradient,
             initial_position=np.array([0.5, 0.5]),
             learning_rate=0.001,
             max_iterations=5000,
@@ -210,7 +235,8 @@ class TestGradientDescent:
 
     def test_parameter_history_correct(self):
         result = gradient_descent(
-            quadratic, quadratic_gradient,
+            quadratic,
+            quadratic_gradient,
             initial_position=np.array([5.0]),
             learning_rate=0.1,
             max_iterations=5,

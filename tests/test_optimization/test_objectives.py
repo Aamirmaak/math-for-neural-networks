@@ -164,8 +164,12 @@ class TestLinearRegression:
             p_minus = params.copy()
             p_plus[i] += h
             p_minus[i] -= h
-            numerical[i] = (linear_regression_loss(p_plus, X, y) - linear_regression_loss(p_minus, X, y)) / (2 * h)
-        np.testing.assert_array_almost_equal(linear_regression_gradient(params, X, y), numerical, decimal=5)
+            numerical[i] = (
+                linear_regression_loss(p_plus, X, y) - linear_regression_loss(p_minus, X, y)
+            ) / (2 * h)
+        np.testing.assert_array_almost_equal(
+            linear_regression_gradient(params, X, y), numerical, decimal=5
+        )
 
 
 class TestLogistic:

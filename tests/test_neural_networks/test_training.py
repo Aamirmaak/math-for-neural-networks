@@ -121,19 +121,23 @@ class TestSGDStep:
     def test_update_changes_params(self) -> None:
         params = init_params(2, 3, 1, seed=42)
         W1_before = params.W1.copy()
-        grads = {"dW1": np.ones_like(params.W1),
-                 "db1": np.ones_like(params.b1),
-                 "dW2": np.ones_like(params.W2),
-                 "db2": np.ones_like(params.b2)}
+        grads = {
+            "dW1": np.ones_like(params.W1),
+            "db1": np.ones_like(params.b1),
+            "dW2": np.ones_like(params.W2),
+            "db2": np.ones_like(params.b2),
+        }
         sgd_step(params, grads, lr=0.1)
         assert not np.array_equal(params.W1, W1_before)
 
     def test_update_direction(self) -> None:
         params = init_params(2, 3, 1, seed=42)
-        grads = {"dW1": np.ones_like(params.W1),
-                 "db1": np.ones_like(params.b1),
-                 "dW2": np.ones_like(params.W2),
-                 "db2": np.ones_like(params.b2)}
+        grads = {
+            "dW1": np.ones_like(params.W1),
+            "db1": np.ones_like(params.b1),
+            "dW2": np.ones_like(params.W2),
+            "db2": np.ones_like(params.b2),
+        }
         W1_before = params.W1.copy()
         sgd_step(params, grads, lr=0.1)
         # W1 should decrease (W1 - lr * 1)
@@ -157,8 +161,11 @@ class TestNumericalGradients:
 
         for name in ["W1", "b1", "W2", "b2"]:
             np.testing.assert_allclose(
-                grads[f"d{name}"], num_grads[name], atol=1e-5, rtol=1e-3,
-                err_msg=f"Gradient mismatch for {name}"
+                grads[f"d{name}"],
+                num_grads[name],
+                atol=1e-5,
+                rtol=1e-3,
+                err_msg=f"Gradient mismatch for {name}",
             )
 
     def test_numerical_vs_analytical_batch(self) -> None:
@@ -173,8 +180,11 @@ class TestNumericalGradients:
 
         for name in ["W1", "b1", "W2", "b2"]:
             np.testing.assert_allclose(
-                grads[f"d{name}"], num_grads[name], atol=1e-5, rtol=1e-3,
-                err_msg=f"Gradient mismatch for {name}"
+                grads[f"d{name}"],
+                num_grads[name],
+                atol=1e-5,
+                rtol=1e-3,
+                err_msg=f"Gradient mismatch for {name}",
             )
 
 

@@ -4,10 +4,10 @@ math-for-neural-networks
 An educational/research-oriented Python toolkit for learning the mathematics
 behind neural networks through implementation, visualization, and numerical verification.
 
-Status: Stage 6 — Backpropagation & Training (Pre-Alpha)
+Status: Stage 7 — Integrated Experiments & Visualization (Pre-Alpha)
 """
 
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 __author__ = "Math for Neural Networks Contributors"
 __license__ = "MIT"
 

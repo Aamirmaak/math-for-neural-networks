@@ -37,7 +37,9 @@ def run_experiment() -> None:
         final_loss = metrics.loss_history[-1]
         status = "converged" if final_loss < 0.1 else ("diverged" if final_loss > 10 else "slow")
 
-        print(f"  {lr:>6.2f} | {metrics.loss_history[0]:>12.6f} | {final_loss:>12.6f} | {status:>12}")
+        print(
+            f"  {lr:>6.2f} | {metrics.loss_history[0]:>12.6f} | {final_loss:>12.6f} | {status:>12}"
+        )
 
     print("\n  CONCLUSION: Learning rate affects convergence speed and stability.")
     print("  Too small: slow convergence. Too large: divergence.")

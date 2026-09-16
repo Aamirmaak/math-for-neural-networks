@@ -545,3 +545,80 @@ Implemented backpropagation and training loop mathematics: scalar autograd engin
 2. Begin Stage 7: Experiments & Visualization Suite
 3. Create comprehensive experiments demonstrating backpropagation concepts
 4. Add visualization tools for computational graphs and training dynamics
+
+---
+
+## 2026-09-16 — Stage 7: Integrated Experiments & Visualization
+
+**Status:** ✅ IMPLEMENTED + TESTED + VERIFIED
+
+**Summary:**
+Created 18 educational experiments integrating all previous stages into coherent demonstrations. Experiments cover vector geometry, matrix transformations, derivative approximation, gradient fields, learning rate effects, optimizer comparison, activation functions, softmax stability, cross-entropy, backpropagation, gradient checking, toy training, gradient flow, vanishing gradients, embedding geometry, attention, attention scaling, and an integrated training pipeline demonstration. All experiments produce actual results and visualizations.
+
+**Artifacts Created/Modified:**
+
+### Experiment Utilities (1 file)
+- `experiments/experiment_utils.py` — Shared helpers: setup_seed, ExperimentResult, save_fig, print_table, ensure_results_dir
+
+### Experiments (18 files)
+- `experiments/01_vector_geometry.py` — Vector angle, dot product, cosine similarity, Euclidean distance
+- `experiments/02_matrix_transformations.py` — Scaling, rotation, reflection, shear transformations
+- `experiments/03_derivative_accuracy.py` — Forward vs central finite differences across step sizes
+- `experiments/04_gradient_field.py` — Contour lines and gradient vectors for f(x,y) = x^2+y^2
+- `experiments/05_learning_rate.py` — Gradient descent with different learning rates
+- `experiments/06_optimizer_comparison.py` — GD vs Momentum vs Adam on Rosenbrock
+- `experiments/07_activation_functions.py` — Sigmoid, tanh, ReLU, GELU comparison
+- `experiments/08_softmax_stability.py` — Naive vs stable softmax numerical stability
+- `experiments/09_cross_entropy.py` — Cross-entropy loss vs predicted probability
+- `experiments/10_backpropagation.py` — Computational graph forward + backward pass
+- `experiments/11_gradient_checking.py` — Analytical vs numerical gradient verification
+- `experiments/12_toy_training.py` — Small neural network training on toy dataset
+- `experiments/13_gradient_flow.py` — Gradient magnitudes through layers during training
+- `experiments/14_vanishing_exploding.py` — Gradient magnitude through sigmoid layers
+- `experiments/15_embedding_geometry.py` — Toy embedding vectors, similarities, distances
+- `experiments/16_attention.py` — Scaled dot-product attention step by step
+- `experiments/17_attention_scaling.py` — Effect of 1/sqrt(d_k) on attention weights
+- `experiments/18_integrated_demo.py` — Complete training pipeline with intermediate math
+
+### Test Files (1 file, 10 tests)
+- `tests/test_experiments/test_experiment_utils.py` — 9 utility tests + 1 integration test
+
+**Milestones Completed:**
+- 7.1: Experiment utilities (seed, result, plotting) ✅
+- 7.2: 18 educational experiments ✅
+- 7.3: All experiments executed with actual results ✅
+- 7.4: Visualizations generated ✅
+- 7.5: Integration test ✅
+- 7.6: Reproducibility verified ✅
+
+**Verification Results:**
+- 703 tests passing (10 new experiment tests + 693 existing, 0 failures)
+- All 18 experiments run successfully with actual results
+- Reproducibility: same seed produces identical numerical results
+- Ruff: experiments directory ignores added (T201 for print statements)
+- Mypy: no new issues
+
+**Key Results from Experiments:**
+- Vector geometry: cosine similarity is magnitude-invariant
+- Derivative accuracy: central differences ~100x more accurate than forward
+- Learning rate: lr=0.5 converges in 2 steps, lr=1.1 diverges
+- Optimizer comparison: Momentum and Adam outperform plain GD on Rosenbrock
+- Gradient checking: all 7 component gradients pass (errors < 1e-10)
+- Toy training: 98% accuracy on toy classification
+- Vanishing gradient: gradient reduces by 1e-11 after 15 sigmoid layers
+- Attention scaling: prevents softmax saturation for large d_k
+
+**Learnings:**
+- Cosine similarity measures direction, Euclidean distance measures proximity
+- Central differences are generally more accurate but also suffer from round-off at very small h
+- Learning rate choice is critical - too large causes divergence
+- Gradient checking is the gold standard for verifying backprop implementations
+- Attention is fundamentally QK^T scaling + softmax + weighted aggregation
+- Complete training pipeline integrates linear algebra, calculus, probability, optimization
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 7 to git
+2. Begin Stage 8: PyTorch Comparison & Framework Parity
+3. Implement numerical parity checks between custom and PyTorch implementations

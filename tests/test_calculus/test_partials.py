@@ -14,6 +14,7 @@ class TestPartialDerivative:
 
     def test_quadratic_xy(self) -> None:
         """f(x,y) = x² + y², ∂f/∂x = 2x"""
+
         def f(point: np.ndarray) -> float:
             return point[0] ** 2 + point[1] ** 2
 
@@ -22,6 +23,7 @@ class TestPartialDerivative:
 
     def test_quadratic_y(self) -> None:
         """f(x,y) = x² + y², ∂f/∂y = 2y"""
+
         def f(point: np.ndarray) -> float:
             return point[0] ** 2 + point[1] ** 2
 
@@ -30,6 +32,7 @@ class TestPartialDerivative:
 
     def test_mixed_terms(self) -> None:
         """f(x,y) = x² + 3xy + y², ∂f/∂x = 2x + 3y"""
+
         def f(point: np.ndarray) -> float:
             x, y = point[0], point[1]
             return x**2 + 3 * x * y + y**2
@@ -39,6 +42,7 @@ class TestPartialDerivative:
 
     def test_three_variables(self) -> None:
         """f(x,y,z) = x*y*z, ∂f/∂x = y*z"""
+
         def f(point: np.ndarray) -> float:
             return point[0] * point[1] * point[2]
 

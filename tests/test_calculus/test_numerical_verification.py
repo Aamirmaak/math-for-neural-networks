@@ -65,9 +65,7 @@ class TestAnalyticalVsNumerical:
             (polynomial, polynomial_derivative, -1.0),
         ],
     )
-    def test_derivative_matches_numerical(
-        self, func, deriv, x_val
-    ) -> None:
+    def test_derivative_matches_numerical(self, func, deriv, x_val) -> None:
         """Analytical derivative should match central difference."""
         numerical = central_difference(func, x_val, h=1e-5)
         analytical = deriv(x_val)
@@ -75,8 +73,7 @@ class TestAnalyticalVsNumerical:
             # Relative error for non-zero derivatives
             rel_err = abs(numerical - analytical) / abs(analytical)
             assert rel_err < 1e-4, (
-                f"x={x_val}: analytical={analytical}, numerical={numerical}, "
-                f"rel_err={rel_err}"
+                f"x={x_val}: analytical={analytical}, numerical={numerical}, rel_err={rel_err}"
             )
         else:
             # Absolute error for zero derivatives
@@ -119,6 +116,7 @@ class TestGradientVerification:
 
     def test_sphere_gradient(self) -> None:
         """f(x,y) = x² + y², ∇f = [2x, 2y]"""
+
         def f(point: np.ndarray) -> float:
             return point[0] ** 2 + point[1] ** 2
 
@@ -134,6 +132,7 @@ class TestGradientVerification:
 
     def test_mixed_gradient(self) -> None:
         """f(x,y) = x² + 3xy + y², ∇f = [2x+3y, 3x+2y]"""
+
         def f(point: np.ndarray) -> float:
             x, y = point[0], point[1]
             return x**2 + 3 * x * y + y**2
@@ -145,6 +144,7 @@ class TestGradientVerification:
 
     def test_three_dim_gradient(self) -> None:
         """f(x,y,z) = x²y + z³, ∇f = [2xy, x², 3z²]"""
+
         def f(point: np.ndarray) -> float:
             x, y, z = point[0], point[1], point[2]
             return x**2 * y + z**3

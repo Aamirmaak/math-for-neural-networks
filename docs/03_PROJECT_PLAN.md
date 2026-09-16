@@ -11,7 +11,7 @@
 | 4 | Optimization Algorithms | GD, SGD, momentum, Adam | Stage 2 | ✅ Implemented |
 | 5 | Neural-Network Mathematics | Layers, activations, losses, embeddings | Stage 1, 3 | ✅ Implemented |
 | 6 | Backpropagation & Training Loops | Autograd, training, validation | Stage 2, 5 | ✅ Implemented |
-| 7 | Experiments & Visualization Suite | Structured experiments, plots, notebooks | Stage 4, 6 | 📋 Planned |
+| 7 | Experiments & Visualization Suite | Structured experiments, plots, notebooks | Stage 4, 6 | ✅ Implemented |
 | 8 | PyTorch Comparison/Validation | Numerical parity checks | Stage 6 | 📋 Planned |
 
 ## Milestones & Implementation Order

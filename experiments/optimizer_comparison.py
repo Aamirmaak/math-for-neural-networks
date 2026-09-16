@@ -41,10 +41,36 @@ def run_experiment() -> None:
 
     # Part 1: Optimizer comparison
     optimizers = [
-        ("GD (lr=0.04)", lambda: gradient_descent(f, grad, x0.copy(), learning_rate=0.04, max_iterations=max_iter, param_tol=1e-10)),
-        ("Mom (lr=0.04, b=0.9)", lambda: momentum(f, grad, x0.copy(), learning_rate=0.04, beta=0.9, max_iterations=max_iter, param_tol=1e-10)),
-        ("Adam (lr=0.1)", lambda: adam(f, grad, x0.copy(), learning_rate=0.1, max_iterations=max_iter, param_tol=1e-10)),
-        ("Adam (lr=0.01)", lambda: adam(f, grad, x0.copy(), learning_rate=0.01, max_iterations=max_iter, param_tol=1e-10)),
+        (
+            "GD (lr=0.04)",
+            lambda: gradient_descent(
+                f, grad, x0.copy(), learning_rate=0.04, max_iterations=max_iter, param_tol=1e-10
+            ),
+        ),
+        (
+            "Mom (lr=0.04, b=0.9)",
+            lambda: momentum(
+                f,
+                grad,
+                x0.copy(),
+                learning_rate=0.04,
+                beta=0.9,
+                max_iterations=max_iter,
+                param_tol=1e-10,
+            ),
+        ),
+        (
+            "Adam (lr=0.1)",
+            lambda: adam(
+                f, grad, x0.copy(), learning_rate=0.1, max_iterations=max_iter, param_tol=1e-10
+            ),
+        ),
+        (
+            "Adam (lr=0.01)",
+            lambda: adam(
+                f, grad, x0.copy(), learning_rate=0.01, max_iterations=max_iter, param_tol=1e-10
+            ),
+        ),
     ]
 
     print(f"\n  {'Optimizer':>22} | {'f(final)':>12} | {'Iters':>6} | {'Converged':>10}")
@@ -80,21 +106,52 @@ def run_experiment() -> None:
 
     def f_rosen(params: np.ndarray) -> float:
         x, y = params[0], params[1]
-        return (1 - x) ** 2 + 100 * (y - x ** 2) ** 2
+        return (1 - x) ** 2 + 100 * (y - x**2) ** 2
 
     def grad_rosen(params: np.ndarray) -> np.ndarray:
         x, y = params[0], params[1]
-        dx = -2.0 * (1 - x) - 400.0 * x * (y - x ** 2)
-        dy = 200.0 * (y - x ** 2)
+        dx = -2.0 * (1 - x) - 400.0 * x * (y - x**2)
+        dy = 200.0 * (y - x**2)
         return np.array([dx, dy])
 
     x0_rosen = np.array([-1.0, 1.0])
     true_min = np.array([1.0, 1.0])
 
     rosen_optimizers = [
-        ("GD (lr=0.001)", lambda: gradient_descent(f_rosen, grad_rosen, x0_rosen.copy(), learning_rate=0.001, max_iterations=5000, param_tol=1e-10)),
-        ("Mom (lr=0.001, b=0.9)", lambda: momentum(f_rosen, grad_rosen, x0_rosen.copy(), learning_rate=0.001, beta=0.9, max_iterations=5000, param_tol=1e-10)),
-        ("Adam (lr=0.01)", lambda: adam(f_rosen, grad_rosen, x0_rosen.copy(), learning_rate=0.01, max_iterations=5000, param_tol=1e-10)),
+        (
+            "GD (lr=0.001)",
+            lambda: gradient_descent(
+                f_rosen,
+                grad_rosen,
+                x0_rosen.copy(),
+                learning_rate=0.001,
+                max_iterations=5000,
+                param_tol=1e-10,
+            ),
+        ),
+        (
+            "Mom (lr=0.001, b=0.9)",
+            lambda: momentum(
+                f_rosen,
+                grad_rosen,
+                x0_rosen.copy(),
+                learning_rate=0.001,
+                beta=0.9,
+                max_iterations=5000,
+                param_tol=1e-10,
+            ),
+        ),
+        (
+            "Adam (lr=0.01)",
+            lambda: adam(
+                f_rosen,
+                grad_rosen,
+                x0_rosen.copy(),
+                learning_rate=0.01,
+                max_iterations=5000,
+                param_tol=1e-10,
+            ),
+        ),
     ]
 
     print(f"\n  {'Optimizer':>22} | {'f(final)':>12} | {'Dist to min':>12} | {'Iters':>6}")

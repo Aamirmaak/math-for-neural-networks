@@ -41,7 +41,9 @@ def run_experiment() -> None:
 
     # Final
     i = len(metrics.loss_history) - 1
-    print(f"  {i:>5} | {metrics.loss_history[i]:>10.6f} | {metrics.gradient_norm_history[i]:>10.6f}")
+    print(
+        f"  {i:>5} | {metrics.loss_history[i]:>10.6f} | {metrics.gradient_norm_history[i]:>10.6f}"
+    )
 
     print("\n  CONCLUSION: Gradient norm decreases as network converges.")
     print("  This indicates the network is approaching a minimum.")

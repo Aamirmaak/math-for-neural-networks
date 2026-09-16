@@ -95,8 +95,8 @@ class TestValueGradients:
         c = a * b * d
         c.backward()
         assert a.grad == 12.0  # b * d
-        assert b.grad == 8.0   # a * d
-        assert d.grad == 6.0   # a * b
+        assert b.grad == 8.0  # a * d
+        assert d.grad == 6.0  # a * b
 
     def test_power(self) -> None:
         a = Value(3.0)

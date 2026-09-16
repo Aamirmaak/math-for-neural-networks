@@ -32,7 +32,9 @@ def run_experiment() -> None:
 
     d_k_values = [4, 16, 64, 256]
 
-    print(f"\n  {'d_k':>6} | {'Without scaling':>20} | {'With scaling':>20} | {'Max weight (no scale)':>22}")
+    print(
+        f"\n  {'d_k':>6} | {'Without scaling':>20} | {'With scaling':>20} | {'Max weight (no scale)':>22}"
+    )
     print("  " + "-" * 75)
 
     for d_k in d_k_values:
@@ -63,10 +65,7 @@ def run_experiment() -> None:
         K = rng.standard_normal((n, d_k))
         scores_no_scale = q @ K.T
         scores_scaled = q @ K.T / np.sqrt(d_k)
-        print(
-            f"  {d_k:>6} | {np.max(scores_no_scale):>20.4f} | "
-            f"{np.max(scores_scaled):>20.4f}"
-        )
+        print(f"  {d_k:>6} | {np.max(scores_no_scale):>20.4f} | {np.max(scores_scaled):>20.4f}")
 
     print("\n  OBSERVATIONS:")
     print("  - Without scaling, scores grow with d_k")

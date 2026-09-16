@@ -100,7 +100,7 @@ select = [
 ignore = [
     "E501",  # line too long (handled by formatter)
 ]
-per-file-ignores = { "tests/*" = ["S101", "T201", "N806", "E741", "B905"], "src/math_for_neural_networks/optimization/objectives.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/attention.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/layers.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/backprop.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/training.py" = ["N803", "N806"] }
+per-file-ignores = { "tests/*" = ["S101", "T201", "N806", "E741", "B905"], "experiments/*" = ["T201", "F541", "F401", "I001", "B007", "N806"], "src/math_for_neural_networks/optimization/objectives.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/attention.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/layers.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/backprop.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/training.py" = ["N803", "N806"] }
 
 [tool.ruff.format]
 quote-style = "double"

@@ -15,6 +15,7 @@ class TestNumericalGradient:
 
     def test_sphere(self) -> None:
         """f(x,y) = x² + y², ∇f = [2x, 2y]"""
+
         def f(point: np.ndarray) -> float:
             return point[0] ** 2 + point[1] ** 2
 
@@ -23,6 +24,7 @@ class TestNumericalGradient:
 
     def test_origin(self) -> None:
         """f(x,y) = x² + y², ∇f(0,0) = [0, 0]"""
+
         def f(point: np.ndarray) -> float:
             return point[0] ** 2 + point[1] ** 2
 
@@ -31,6 +33,7 @@ class TestNumericalGradient:
 
     def test_three_dim(self) -> None:
         """f(x,y,z) = x² + y² + z², ∇f = [2x, 2y, 2z]"""
+
         def f(point: np.ndarray) -> float:
             return point[0] ** 2 + point[1] ** 2 + point[2] ** 2
 
@@ -39,6 +42,7 @@ class TestNumericalGradient:
 
     def test_mixed_terms(self) -> None:
         """f(x,y) = x² + 3xy + y², ∇f = [2x+3y, 3x+2y]"""
+
         def f(point: np.ndarray) -> float:
             x, y = point[0], point[1]
             return x**2 + 3 * x * y + y**2
