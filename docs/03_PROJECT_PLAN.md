@@ -7,7 +7,7 @@
 | 0 | Project Definition & Documentation | Repo structure, docs, tooling, planning | None | ✅ Complete |
 | 1 | Linear Algebra Primitives | Scalars, vectors, matrices, core ops | Stage 0 | ✅ Implemented |
 | 2 | Calculus & Numerical Differentiation | Derivatives, gradients, chain rule, verification | Stage 1 | ✅ Implemented |
-| 3 | Probability & Statistics Foundations | Distributions, entropy, cross-entropy, MLE | Stage 1 | 📋 Planned |
+| 3 | Probability & Statistics Foundations | Distributions, entropy, cross-entropy, MLE | Stage 1 | ✅ Implemented |
 | 4 | Optimization Algorithms | GD, SGD, momentum, Adam | Stage 2 | 📋 Planned |
 | 5 | Neural-Network Mathematics | Layers, activations, losses, embeddings | Stage 1, 3 | 📋 Planned |
 | 6 | Backpropagation & Training Loops | Autograd, training, validation | Stage 2, 5 | 📋 Planned |

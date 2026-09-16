@@ -22,6 +22,51 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.4.0] — 2026-09-16 (Stage 3: Probability & Statistics Foundations)
+
+### Added
+- **probability/fundamentals.py**: Probability axioms, complement, union, intersection, conditional probability, Bayes theorem, marginal/joint distributions
+- **probability/distributions.py**: Bernoulli, Binomial, Categorical, Uniform, Normal distributions (PMF/PDF/CDF/E/V)
+- **probability/moments.py**: Expectation, variance, standard deviation
+- **probability/information.py**: Entropy, cross-entropy, KL divergence, log probability
+- **probability/likelihood.py**: Likelihood, log-likelihood, Bernoulli MLE, Gaussian MLE, categorical log-likelihood
+- **probability/stability.py**: Log-sum-exp, softmax, log-softmax, sigmoid, binary/cross-entropy with logits
+
+### Tests
+- 149 tests across 7 test files (all passing)
+- Unit tests for all probability operations
+- Numerical verification tests comparing against NumPy/scipy
+- Edge case tests (empty distributions, zero probabilities, extreme values)
+- Properties tests (entropy bounds, KL divergence non-negativity)
+
+### Examples
+- examples/entropy.py — Entropy intuition, uniform/Bernoulli entropy, model confidence
+- examples/cross_entropy.py — One-hot cross-entropy, KL decomposition, softmax pipeline
+- examples/mle.py — Bernoulli/Gaussian MLE, likelihood curves
+
+### Experiments
+- experiments/entropy_categorical.py — Entropy vs concentration
+- experiments/cross_entropy_loss.py — Cross-entropy vs predicted probability
+- experiments/mle_convergence.py — MLE convergence with sample size
+
+### Changed
+- Updated README.md with Stage 3 status, probability usage examples
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.4.0, added probability import
+- Updated docs/03_PROJECT_PLAN.md — Stage 3 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 3 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+
+### Design Decisions
+- 0 × log(0) = 0 convention for entropy calculations
+- Log-sum-exp trick for numerical stability in softmax
+- KL divergence explicitly labeled as divergence, not metric
+- Central differences as default numerical method (O(h²) accuracy)
+- Step-size sensitivity: optimal h ≈ 1e-5 for float64
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.3.0] — 2026-09-16 (Stage 2: Calculus)
 
 ### Added
@@ -178,9 +223,6 @@ All Stage 0 items: `[DOCUMENTED]` (infrastructure validated: install, import, li
 ---
 
 ## Upcoming Releases (Planned)
-
-### [0.4.0] — Stage 3: Probability & Statistics Foundations (Planned)
-**Target:** Distributions, entropy, cross-entropy, MLE, verification
 
 ### [0.5.0] — Stage 4: Optimization Algorithms (Planned)
 **Target:** GD, SGD, momentum, Adam, convergence verification

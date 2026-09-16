@@ -258,6 +258,74 @@ Implemented all core calculus operations: analytical derivatives, numerical diff
 3. Implement probability distributions
 4. Implement entropy, cross-entropy, likelihood
 
+---
+
+## 2026-09-16 — Stage 3: Probability & Statistics Foundations
+
+**Status:** ✅ IMPLEMENTED + TESTED + VERIFIED
+
+**Summary:**
+Implemented all core probability and statistics operations: probability axioms, Bayes theorem, distributions (Bernoulli, Binomial, Categorical, Uniform, Normal), expectation, variance, entropy, cross-entropy, KL divergence, log probability, likelihood, MLE, softmax, log-sum-exp, and sigmoid. Created 6 source modules, 7 test files with 149 tests (all passing), 3 educational examples, and 3 experiments. All verified numerically. Code passes ruff linting, formatting, and mypy type checking.
+
+**Artifacts Created/Modified:**
+
+### Source Modules (7 files)
+- `src/math_for_neural_networks/probability/__init__.py` — Public API exports
+- `src/math_for_neural_networks/probability/fundamentals.py` — Probability axioms, complement, union, intersection, conditional, Bayes theorem, marginal, joint
+- `src/math_for_neural_networks/probability/distributions.py` — Bernoulli, Binomial, Categorical, Uniform, Normal (PMF/PDF/CDF/E/V)
+- `src/math_for_neural_networks/probability/moments.py` — Expectation, variance, standard deviation
+- `src/math_for_neural_networks/probability/information.py` — Entropy, cross-entropy, KL divergence, log probability
+- `src/math_for_neural_networks/probability/likelihood.py` — Likelihood, log-likelihood, Bernoulli MLE, Gaussian MLE
+- `src/math_for_neural_networks/probability/stability.py` — Log-sum-exp, softmax, log-softmax, sigmoid, BCE with logits
+
+### Test Files (7 files, 149 tests)
+- `tests/test_probability/test_fundamentals.py` — 20 tests
+- `tests/test_probability/test_distributions.py` — 25 tests
+- `tests/test_probability/test_moments.py` — 15 tests
+- `tests/test_probability/test_information.py` — 25 tests
+- `tests/test_probability/test_likelihood.py` — 20 tests
+- `tests/test_probability/test_stability.py` — 20 tests
+- `tests/test_probability/test_numerical_verification.py` — 24 tests
+
+### Examples (3 files)
+- `examples/entropy.py` — Entropy, uniform/Bernoulli entropy, model confidence
+- `examples/cross_entropy.py` — One-hot cross-entropy, KL decomposition, softmax pipeline
+- `examples/mle.py` — Bernoulli/Gaussian MLE, likelihood curves
+
+### Experiments (3 files)
+- `experiments/entropy_categorical.py` — Entropy vs concentration
+- `experiments/cross_entropy_loss.py` — Cross-entropy vs predicted probability
+- `experiments/mle_convergence.py` — MLE convergence with sample size
+
+**Milestones Completed:**
+- 3.1: Probability distributions (Bernoulli, Binomial, Categorical, Uniform, Normal) ✅
+- 3.2: Expectation, variance, standard deviation ✅
+- 3.3: Entropy, cross-entropy, KL divergence ✅
+- 3.4: Likelihood, MLE ✅
+- 3.5: Numerical stability (softmax, log-sum-exp, BCE) ✅
+- 3.6: API, documentation, tests ✅
+
+**Verification Results:**
+- 378 tests passing (149 probability + 102 calculus + 127 linear algebra, 0 failures)
+- Numerical verification: all operations match NumPy/scipy within tolerance
+- Ruff: all checks passed
+- Ruff format: all files formatted
+- Mypy: no issues found
+
+**Learnings:**
+- 0 × log(0) = 0 convention is essential for entropy calculations with sparse distributions
+- Log-sum-exp trick prevents overflow when computing softmax of large values
+- KL divergence is NOT a metric (asymmetric, does not satisfy triangle inequality)
+- Cross-entropy = entropy + KL divergence; minimizing CE = minimizing KL
+- MLE converges to true parameter as O(1/sqrt(n)) — demonstrated experimentally
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 3 to git
+2. Begin Stage 4: Optimization Algorithms
+3. Implement gradient descent, SGD, momentum, Adam
+
 ## Template for Future Entries
 
 ### YYYY-MM-DD — Stage N: Stage Name
