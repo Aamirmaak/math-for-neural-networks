@@ -397,29 +397,71 @@ Implemented gradient descent, SGD with momentum, and Adam optimizer with converg
 2. Begin Stage 5: Neural-Network Mathematics
 3. Implement linear layers, activations, loss functions, embeddings
 
-## Template for Future Entries
+## 2026-09-16 — Stage 5: Neural Network Mathematics
 
-### YYYY-MM-DD — Stage N: Stage Name
+**Status:** ✅ IMPLEMENTED + TESTED + VERIFIED
 
-**Status:** 📋 PLANNED / 🚧 IN_PROGRESS / ✅ COMPLETE / ❌ BLOCKED
-
-**Summary:** Brief description of work done
+**Summary:**
+Implemented core neural network mathematics: affine transformation, activation functions (sigmoid, tanh, ReLU, GELU), softmax, loss functions (MSE, BCE, CCE, logits+CE), scaled dot-product attention, and layer normalization. All functions include educational docstrings explaining the math, formulas, and neural network connections. Numerical verification confirms all derivatives against analytical forms.
 
 **Artifacts Created/Modified:**
-- List files created or significantly changed
+
+### Source Modules (6 files)
+- `src/math_for_neural_networks/neural_networks/__init__.py` — Public API exports
+- `src/math_for_neural_networks/neural_networks/layers.py` — affine_transform (single + batch, shape validation)
+- `src/math_for_neural_networks/neural_networks/activations.py` — sigmoid, sigmoid_derivative, tanh, tanh_derivative, relu, relu_derivative, gelu, gelu_derivative
+- `src/math_for_neural_networks/neural_networks/losses.py` — mean_squared_error, binary_cross_entropy, categorical_cross_entropy, cross_entropy_with_logits
+- `src/math_for_neural_networks/neural_networks/attention.py` — softmax (axis-stable), scaled_dot_product_attention (with optional mask), attention_weights
+- `src/math_for_neural_networks/neural_networks/normalization.py` — layer_norm (1D + 2D, gamma/beta), layer_norm_stats
+
+### Test Files (6 files, 137 tests)
+- `tests/test_neural_networks/test_layers.py` — 15 tests for affine_transform
+- `tests/test_neural_networks/test_activations.py` — 41 tests for activations + derivatives
+- `tests/test_neural_networks/test_losses.py` — 31 tests for loss functions
+- `tests/test_neural_networks/test_attention.py` — 11 tests for attention
+- `tests/test_neural_networks/test_normalization.py` — 12 tests for layer norm
+- `tests/test_neural_networks/test_numerical_verification.py` — 27 verification tests
+
+### Examples (5 files)
+- `examples/affine_transformation.py` — Affine transform, bias, batching, NN connection
+- `examples/activation_functions.py` — Sigmoid, tanh, ReLU, GELU comparison
+- `examples/classification_example.py` — Binary/multi-class classification forward pass
+- `examples/attention_example.py` — Self-attention, shape flow, scaling, masking
+- `examples/normalization_example.py` — Layer norm, gamma/beta, Transformers connection
+
+### Experiments (3 files)
+- `experiments/activation_comparison.py` — Activation function comparison (ranges, derivatives, saturation)
+- `experiments/softmax_stability.py` — Naive vs stable softmax numerical stability
+- `experiments/attention_scaling.py` — Effect of 1/sqrt(d_k) scaling on attention weights
 
 **Milestones Completed:**
-- Reference specific milestones from PROJECT_PLAN.md
+- 5.1: Affine transformation (single and batch) ✅
+- 5.2: Activation functions with derivatives ✅
+- 5.3: Softmax (numerically stable) ✅
+- 5.4: Loss functions (MSE, BCE, CCE, logits+CE) ✅
+- 5.5: Attention mathematics ✅
+- 5.6: Layer normalization ✅
+- 5.7: Numerical verification ✅
+- 5.8: Educational examples and experiments ✅
 
 **Verification Results:**
-- Numerical verification outcomes
-- Test results summary
+- 606 tests passing (137 neural networks + 91 optimization + 149 probability + 102 calculus + 127 linear algebra, 0 failures)
+- Numerical verification: all activation/softmax derivatives match numerical approximations within tolerance
+- Ruff: all checks passed (after per-file-ignores for attention.py and layers.py)
+- Ruff format: all files formatted
+- Mypy: no issues found (34 source files)
 
 **Learnings:**
-- Key insights, corrections, surprises
+- Layer normalization uses population variance (ddof=0), not sample variance (ddof=1) — tests must use matching ddof
+- Sigmoid function returns numpy array for array input — examples must convert to float for scalar printing
+- Cross-entropy with logits is more numerically stable than computing softmax then log then CE
+- Attention scaling by 1/sqrt(d_k) prevents softmax saturation for large key dimensions
+- Mathematical notation (Q, K, V, W) requires per-file ruff ignores for naming conventions
 
-**Blockers:**
-- Issues preventing progress
+**Blockers:** None
 
 **Next Steps:**
-- Concrete actions for next session
+1. Commit Stage 5 to git
+2. Begin Stage 6: Backpropagation & Training Loops
+3. Implement automatic differentiation or manual backpropagation
+4. Create training loop with forward/backward passes

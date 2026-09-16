@@ -22,6 +22,52 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.6.0] — 2026-09-16 (Stage 5: Neural Network Mathematics)
+
+### Added
+- **neural_networks/layers.py**: affine_transform (single and batch, shape validation)
+- **neural_networks/activations.py**: sigmoid, sigmoid_derivative, tanh, tanh_derivative, relu, relu_derivative, gelu, gelu_derivative (all numerically stable)
+- **neural_networks/losses.py**: mean_squared_error, binary_cross_entropy, categorical_cross_entropy, cross_entropy_with_logits
+- **neural_networks/attention.py**: softmax (axis-stable), scaled_dot_product_attention (with optional mask), attention_weights
+- **neural_networks/normalization.py**: layer_norm (1D + 2D, gamma/beta), layer_norm_stats
+
+### Tests
+- 137 tests across 6 test files (all passing)
+- Unit tests for all neural network operations
+- Numerical verification tests comparing analytical vs numerical derivatives
+- Edge case tests (empty inputs, mismatched dimensions, extreme values)
+- Property tests (softmax sums to 1, attention weights sum to 1, normalization zero mean)
+
+### Examples
+- examples/affine_transformation.py — Affine transform, bias, batching, NN connection
+- examples/activation_functions.py — Sigmoid, tanh, ReLU, GELU comparison
+- examples/classification_example.py — Binary/multi-class classification forward pass
+- examples/attention_example.py — Self-attention, shape flow, scaling, masking
+- examples/normalization_example.py — Layer norm, gamma/beta, Transformers connection
+
+### Experiments
+- experiments/activation_comparison.py — Activation function comparison (ranges, derivatives, saturation)
+- experiments/softmax_stability.py — Naive vs stable softmax numerical stability
+- experiments/attention_scaling.py — Effect of 1/sqrt(d_k) scaling on attention weights
+
+### Changed
+- Updated README.md with Stage 5 status, neural network usage examples
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.6.0, added neural_networks import
+- Updated docs/03_PROJECT_PLAN.md — Stage 5 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 5 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+
+### Design Decisions
+- Layer normalization uses population variance (ddof=0), not sample variance (ddof=1)
+- Cross-entropy with logits for numerical stability (avoids softmax->log->CE pipeline)
+- Attention scaling by 1/sqrt(d_k) prevents softmax saturation
+- Functions over classes for all implementations
+- GELU implemented via tanh approximation (standard formula)
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.5.0] — 2026-09-16 (Stage 4: Optimization Algorithms)
 
 ### Added
@@ -274,12 +320,6 @@ All Stage 0 items: `[DOCUMENTED]` (infrastructure validated: install, import, li
 ---
 
 ## Upcoming Releases (Planned)
-
-### [0.5.0] — Stage 4: Optimization Algorithms (Planned)
-**Target:** GD, SGD, momentum, Adam, convergence verification
-
-### [0.6.0] — Stage 5: Neural-Network Mathematics (Planned)
-**Target:** Layers, activations, losses, embeddings, attention, normalization
 
 ### [0.7.0] — Stage 6: Backpropagation & Training Loops (Planned)
 **Target:** Autograd, training loops, XOR/MNIST validation

@@ -1,6 +1,6 @@
 # Math for Neural Networks
 
-**Status: Stage 4 — Optimization (Pre-Alpha)**
+**Status: Stage 5 — Neural Network Mathematics (Pre-Alpha)**
 
 An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification.
 
@@ -39,6 +39,8 @@ This project addresses that educational gap by providing a programmable mathemat
 
 ## Current Status
 
+**Stage 5 Implemented:** Neural Network Mathematics — affine transformation, activation functions (sigmoid, tanh, ReLU, GELU), softmax, loss functions (MSE, BCE, CCE, logits+CE), attention mathematics, layer normalization. All verified with 137 tests.
+
 **Stage 4 Implemented:** Optimization — gradient descent, SGD with momentum, Adam optimizer, convergence diagnostics, objective functions, numerical verification.
 
 **Stage 3 Implemented:** Probability & Statistics — distributions, entropy, cross-entropy, KL divergence, MLE, softmax, log-sum-exp. All verified.
@@ -48,6 +50,18 @@ This project addresses that educational gap by providing a programmable mathemat
 **Stage 1 Implemented:** Linear algebra primitives — vectors, matrices, operations, norms, cosine similarity, projections, linear transformations, eigenvalues/eigenvectors. All verified against NumPy.
 
 **Stage 0 Complete:** Project foundation established — documentation, architecture, repository structure, testing strategy, experiment strategy, and distribution plan.
+
+### Implemented (Stage 5) — Neural Network Mathematics
+- Affine transformation (single and batch)
+- Activation functions: sigmoid, tanh, ReLU, GELU with derivatives
+- Softmax (numerically stable with axis support)
+- Loss functions: MSE, binary cross-entropy, categorical cross-entropy, cross-entropy with logits
+- Attention mathematics: scaled dot-product attention with masking
+- Layer normalization (1D and 2D, gamma/beta parameters)
+- Numerical verification of all derivatives against analytical forms
+- 137 passing tests (unit + numerical verification)
+- Educational examples: affine transformation, activations, classification, attention, normalization
+- Experiments: activation comparison, softmax stability, attention scaling
 
 ### Implemented (Stage 4) — Optimization
 - Gradient descent with configurable learning rate, convergence criteria
@@ -123,12 +137,12 @@ This project addresses that educational gap by providing a programmable mathemat
 - SGD with momentum
 - Adam optimizer with bias correction
 
-### Neural-Network Mathematics (Planned)
-- Linear layers, activation functions
-- Sigmoid, softmax
-- Loss functions
-- Backpropagation
-- Embeddings, attention, normalization
+### Neural-Network Mathematics (Implemented)
+- Linear layers, activation functions (sigmoid, tanh, ReLU, GELU)
+- Softmax (numerically stable)
+- Loss functions (MSE, binary CE, categorical CE, logits+CE)
+- Attention mathematics (scaled dot-product, masking)
+- Layer normalization
 
 ## Installation
 
@@ -271,7 +285,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Limitations
 
-- **Pre-alpha:** Linear algebra and calculus implemented; probability, optimization, and neural-network math pending
+- **Pre-alpha:** Stages 1-5 implemented; backpropagation and training loops pending
 - **Educational focus:** Not a production ML framework
 - **No GPU acceleration:** Pure CPU/NumPy implementation
 - **No automatic differentiation:** Manual implementation for learning purposes
@@ -284,9 +298,9 @@ MIT License — see [LICENSE](LICENSE) for details.
 | 0 | Project definition & documentation | ✅ Complete |
 | 1 | Linear algebra primitives | ✅ Implemented |
 | 2 | Calculus & numerical differentiation | ✅ Implemented |
-| 3 | Probability & statistics foundations | 📋 Planned |
-| 4 | Optimization algorithms | 📋 Planned |
-| 5 | Neural-network mathematics | 📋 Planned |
+| 3 | Probability & statistics foundations | ✅ Implemented |
+| 4 | Optimization algorithms | ✅ Implemented |
+| 5 | Neural-network mathematics | ✅ Implemented |
 | 6 | Backpropagation & training loops | 📋 Planned |
 | 7 | Experiments & visualization suite | 📋 Planned |
 | 8 | PyTorch comparison/validation | 📋 Planned |
