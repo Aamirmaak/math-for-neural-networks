@@ -593,4 +593,46 @@ Each decision records: **Decision**, **Rationale**, **Alternatives Considered**,
 
 ---
 
+## DEC-028: Central Differences as Default Numerical Method
+
+**Decision:** Use central differences as the default numerical differentiation method
+
+**Rationale:**
+- Central differences are O(h²) accurate vs O(h) for forward differences
+- For smooth functions, central differences are ~100x more accurate at same h
+- Optimal h ≈ 1e-5 for float64 precision
+- Forward differences kept for pedagogical comparison
+
+**Status:** ✅ Accepted (Stage 2)
+
+---
+
+## DEC-029: Step-Size Analysis as Educational Tool
+
+**Decision:** Include step_size_analysis function and experiment to demonstrate numerical sensitivity
+
+**Rationale:**
+- Understanding step-size sensitivity is critical for numerical computing
+- Demonstrates floating-point limitations (too small h → roundoff errors)
+- Shows truncation error (too large h → method inaccuracy)
+- Connects to practical concerns in neural network gradient computation
+
+**Status:** ✅ Accepted (Stage 2)
+
+---
+
+## DEC-030: Activation Derivatives Avoid Recomputation
+
+**Decision:** Compute sigmoid derivative as σ(x)(1-σ(x)) rather than σ'(x) = e^(-x)/(1+e^(-x))²
+
+**Rationale:**
+- The formula σ'(x) = σ(x)(1-σ(x)) is more numerically stable
+- It reuses the sigmoid output rather than recomputing the exponential
+- This mirrors how derivatives are computed in practice (autograd caches forward pass values)
+- Educational clarity: shows the elegant relationship between sigmoid and its derivative
+
+**Status:** ✅ Accepted (Stage 2)
+
+---
+
 *End of decisions. New decisions appended as made.*

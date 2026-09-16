@@ -1,6 +1,6 @@
 # Math for Neural Networks
 
-**Status: Stage 1 — Linear Algebra Primitives (Pre-Alpha)**
+**Status: Stage 2 — Calculus (Pre-Alpha)**
 
 An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification.
 
@@ -39,11 +39,25 @@ This project addresses that educational gap by providing a programmable mathemat
 
 ## Current Status
 
+**Stage 2 Implemented:** Calculus — analytical derivatives, numerical differentiation, partial derivatives, gradients, and chain rule. All operations tested and numerically verified.
+
 **Stage 1 Implemented:** Linear algebra primitives — vectors, matrices, operations, norms, cosine similarity, projections, linear transformations, eigenvalues/eigenvectors. All operations tested and numerically verified against NumPy.
 
 **Stage 0 Complete:** Project foundation established — documentation, architecture, repository structure, testing strategy, experiment strategy, and distribution plan.
 
-### Implemented (Stage 1)
+### Implemented (Stage 2) — Calculus
+- Analytical derivatives: quadratic, cubic, polynomial, sin, cos, exp, log
+- Neural network activations: sigmoid, tanh, ReLU (with derivatives)
+- Finite differences: forward, central, numerical_derivative
+- Step-size sensitivity analysis
+- Partial derivatives (central and forward difference)
+- Numerical gradient computation
+- Gradient magnitude and direction
+- Chain rule: scalar, multivariable, neural network demo
+- 102 passing tests (unit + numerical verification)
+- Educational examples and step-size experiment
+
+### Implemented (Stage 1) — Linear Algebra
 - Vector operations: addition, subtraction, scalar multiplication, dot product
 - Matrix operations: addition, subtraction, scalar multiplication, transpose, identity
 - Matrix multiplication (educational triple-loop implementation)
@@ -56,14 +70,6 @@ This project addresses that educational gap by providing a programmable mathemat
 - Condition number computation
 - Numerical verification against NumPy for all operations
 - 127 passing tests (unit + numerical verification)
-
-### Planned
-- Calculus & numerical differentiation
-- Probability & statistics
-- Optimization algorithms
-- Neural-network mathematics
-- Backpropagation & training loops
-- PyTorch comparison
 
 ## Planned Capabilities (MVP Roadmap)
 
@@ -119,6 +125,7 @@ pip install -e ".[experiment]"
 ## Usage
 
 ```python
+# Linear Algebra
 from math_for_neural_networks.linear_algebra import (
     dot_product,
     vector_add,
@@ -129,24 +136,39 @@ from math_for_neural_networks.linear_algebra import (
     project_vector,
 )
 
-# Vectors
 a = [1, 2, 3]
 b = [4, 5, 6]
 print(dot_product(a, b))          # 32.0
 print(vector_add(a, b))           # [5, 7, 9]
 print(l2_norm(a))                 # 3.7416...
-
-# Cosine similarity
 print(cosine_similarity(a, b))    # 0.9746...
 
-# Matrices
-W = [[1, 2], [3, 4]]
-x = [5, 6]
-print(matrix_vector_multiply(W, x))  # [17, 39]
+# Calculus
+from math_for_neural_networks.calculus import (
+    quadratic, quadratic_derivative,
+    central_difference, numerical_gradient,
+    sigmoid, sigmoid_derivative,
+    chain_rule_scalar,
+)
 
-# Projection
-proj = project_vector([3, 4], [1, 0])
-print(proj)                       # [3, 0]
+# Analytical derivatives
+print(quadratic(3.0))             # 9.0
+print(quadratic_derivative(3.0))  # 6.0
+
+# Numerical verification
+numerical = central_difference(quadratic, 3.0, h=1e-5)
+print(numerical)                  # ~6.0
+
+# Gradient computation
+def f(point):
+    return point[0]**2 + point[1]**2
+
+grad = numerical_gradient(f, [3.0, 4.0])
+print(grad)                       # [6.0, 8.0]
+
+# Neural network activation derivatives
+print(sigmoid(0.0))               # 0.5
+print(sigmoid_derivative(0.0))    # 0.25
 ```
 
 ## Repository Structure
@@ -221,7 +243,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Limitations
 
-- **Pre-alpha:** Only linear algebra implemented so far
+- **Pre-alpha:** Linear algebra and calculus implemented; probability, optimization, and neural-network math pending
 - **Educational focus:** Not a production ML framework
 - **No GPU acceleration:** Pure CPU/NumPy implementation
 - **No automatic differentiation:** Manual implementation for learning purposes
@@ -233,7 +255,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 |-------|-------|--------|
 | 0 | Project definition & documentation | ✅ Complete |
 | 1 | Linear algebra primitives | ✅ Implemented |
-| 2 | Calculus & numerical differentiation | 📋 Planned |
+| 2 | Calculus & numerical differentiation | ✅ Implemented |
 | 3 | Probability & statistics foundations | 📋 Planned |
 | 4 | Optimization algorithms | 📋 Planned |
 | 5 | Neural-network mathematics | 📋 Planned |

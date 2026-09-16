@@ -6,7 +6,7 @@
 |-------|------|-------|--------------|--------|
 | 0 | Project Definition & Documentation | Repo structure, docs, tooling, planning | None | ✅ Complete |
 | 1 | Linear Algebra Primitives | Scalars, vectors, matrices, core ops | Stage 0 | ✅ Implemented |
-| 2 | Calculus & Numerical Differentiation | Derivatives, gradients, chain rule, verification | Stage 1 | 📋 Planned |
+| 2 | Calculus & Numerical Differentiation | Derivatives, gradients, chain rule, verification | Stage 1 | ✅ Implemented |
 | 3 | Probability & Statistics Foundations | Distributions, entropy, cross-entropy, MLE | Stage 1 | 📋 Planned |
 | 4 | Optimization Algorithms | GD, SGD, momentum, Adam | Stage 2 | 📋 Planned |
 | 5 | Neural-Network Mathematics | Layers, activations, losses, embeddings | Stage 1, 3 | 📋 Planned |
@@ -29,16 +29,16 @@
 | 1.6 | Linear algebra submodule API, documentation | Import tests, docstring coverage |
 
 ### Stage 2: Calculus & Numerical Differentiation
-**Checkpoint:** Analytical vs. finite-difference verification working
+**Checkpoint:** Analytical vs. finite-difference verification working ✅
 
 | Milestone | Deliverable | Verification |
 |-----------|-------------|--------------|
-| 2.1 | Finite difference utilities (forward, central, complex-step) | Test against known derivatives |
-| 2.2 | `derivative(f, x)`, `gradient(f, x)` functions | Numerical verification on polynomials, trig |
-| 2.3 | Partial derivatives for multivariate functions | Test on known functions (e.g., f(x,y)=x²+y²) |
-| 2.4 | Chain rule implementation (manual) | Compose functions, verify gradients |
-| 2.5 | Analytical derivatives for key functions (sigmoid, ReLU, softmax, log, exp) | Numerical verification with tolerances |
-| 2.6 | Calculus submodule API, documentation | Import tests, docstring coverage |
+| 2.1 | Finite difference utilities (forward, central) ✅ | Test against known derivatives ✅ |
+| 2.2 | `numerical_derivative`, `numerical_gradient` functions ✅ | Numerical verification on polynomials, trig ✅ |
+| 2.3 | Partial derivatives for multivariate functions ✅ | Test on known functions ✅ |
+| 2.4 | Chain rule implementation (scalar, multivariable) ✅ | Compose functions, verify gradients ✅ |
+| 2.5 | Analytical derivatives for key functions (sigmoid, ReLU, tanh, log, exp) ✅ | Numerical verification with tolerances ✅ |
+| 2.6 | Calculus submodule API, documentation ✅ | Import tests, docstring coverage ✅ |
 
 ### Stage 3: Probability & Statistics Foundations
 **Checkpoint:** Distributions, entropy, cross-entropy working and verified

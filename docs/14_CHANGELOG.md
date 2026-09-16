@@ -22,6 +22,48 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.3.0] — 2026-09-16 (Stage 2: Calculus)
+
+### Added
+- **calculus/derivatives.py**: Analytical derivatives — quadratic, cubic, polynomial, sin, cos, exp, log, sigmoid, tanh, relu (with domain validation)
+- **calculus/finite_differences.py**: Numerical differentiation — forward_difference, central_difference, numerical_derivative, step_size_analysis
+- **calculus/partials.py**: Partial derivatives — central and forward difference methods
+- **calculus/gradients.py**: Gradient computation — numerical_gradient, gradient_magnitude, gradient_direction
+- **calculus/chain_rule.py**: Chain rule — scalar chain_rule_scalar, multivariable chain_rule_multi, demonstrate_chain_rule, neural_network_chain_rule_demo
+
+### Tests
+- 102 tests across 6 test files (all passing)
+- Unit tests for all analytical derivatives and numerical methods
+- Numerical verification tests comparing analytical vs central differences
+- Activation function derivative verification (sigmoid, tanh, ReLU)
+- Gradient verification against analytical gradients
+- Edge case tests (zero step size, negative step size, domain errors)
+
+### Examples
+- examples/derivatives.py — Derivative intuition, activation functions, NN connection
+- examples/gradients.py — Gradient computation, direction, gradient descent simulation
+- examples/chain_rule.py — Chain rule, backpropagation, vanishing gradients
+
+### Experiments
+- experiments/step_size_sensitivity.py — Step-size analysis, floating-point limits, forward vs central comparison
+
+### Changed
+- Updated README.md with Stage 2 status, calculus usage examples
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.3.0, added calculus import
+- Updated docs/11_PROGRESS_LOG.md — Stage 2 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+
+### Design Decisions
+- Central differences as default (O(h²) accuracy vs O(h) for forward)
+- Step-size analysis reveals optimal h ≈ 1e-5 for float64
+- Sigmoid derivative computed as σ(x)(1-σ(x)) — avoids recomputing exp
+- ReLU derivative handles scalar inputs via np.asarray conversion
+- Chain rule implemented as both scalar and multivariable for pedagogical completeness
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.2.0] — 2026-09-16 (Stage 1: Linear Algebra)
 
 ### Added
@@ -136,12 +178,6 @@ All Stage 0 items: `[DOCUMENTED]` (infrastructure validated: install, import, li
 ---
 
 ## Upcoming Releases (Planned)
-
-### [0.2.0] — Stage 1: Linear Algebra Primitives (Planned)
-**Target:** Matrix/Vector operations, norms, cosine similarity, numerical verification framework
-
-### [0.3.0] — Stage 2: Calculus & Numerical Differentiation (Planned)
-**Target:** Finite differences, analytical derivatives, chain rule, gradient verification
 
 ### [0.4.0] — Stage 3: Probability & Statistics Foundations (Planned)
 **Target:** Distributions, entropy, cross-entropy, MLE, verification

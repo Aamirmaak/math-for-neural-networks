@@ -188,6 +188,76 @@ Implemented all core linear algebra operations with educational clarity. Created
 
 ---
 
+## 2026-09-16 — Stage 2: Calculus & Numerical Differentiation
+
+**Status:** ✅ IMPLEMENTED + TESTED + VERIFIED
+
+**Summary:**
+Implemented all core calculus operations: analytical derivatives, numerical differentiation, partial derivatives, gradients, and chain rule. Created 5 source modules, 6 test files with 102 tests (all passing), 3 educational examples, and a step-size sensitivity experiment. All verified numerically. Code passes ruff linting, formatting, and mypy type checking.
+
+**Artifacts Created/Modified:**
+
+### Source Modules (6 files)
+- `src/math_for_neural_networks/calculus/__init__.py` — Public API exports
+- `src/math_for_neural_networks/calculus/derivatives.py` — Analytical derivatives: quadratic, cubic, polynomial, sin, cos, exp, log, sigmoid, tanh, relu
+- `src/math_for_neural_networks/calculus/finite_differences.py` — Forward difference, central difference, numerical_derivative, step_size_analysis
+- `src/math_for_neural_networks/calculus/partials.py` — Partial derivatives (central and forward difference)
+- `src/math_for_neural_networks/calculus/gradients.py` — Numerical gradient, gradient magnitude, gradient direction
+- `src/math_for_neural_networks/calculus/chain_rule.py` — Scalar chain rule, multivariable chain rule, neural network demo
+
+### Test Files (6 files, 102 tests)
+- `tests/test_calculus/test_derivatives.py` — 26 tests (function values + derivatives)
+- `tests/test_calculus/test_finite_differences.py` — 14 tests (forward, central, step-size analysis)
+- `tests/test_calculus/test_partials.py` — 7 tests (partial derivatives)
+- `tests/test_calculus/test_gradients.py` — 10 tests (gradient computation)
+- `tests/test_calculus/test_chain_rule.py` — 5 tests (chain rule demos)
+- `tests/test_calculus/test_numerical_verification.py` — 40 tests (analytical vs numerical)
+
+### Examples (3 files)
+- `examples/derivatives.py` — Derivative intuition, activation functions, NN connection
+- `examples/gradients.py` — Gradient computation, direction, gradient descent simulation
+- `examples/chain_rule.py` — Chain rule, backpropagation, vanishing gradients
+
+### Experiments (1 file)
+- `experiments/step_size_sensitivity.py` — Step-size analysis, floating-point limits, forward vs central
+
+### Documentation Updated
+- `README.md` — Updated status to Stage 2, added calculus examples
+- `src/math_for_neural_networks/__init__.py` — Version bump to 0.3.0, added calculus import
+
+**Milestones Completed:**
+- 2.1: Analytical derivatives for key functions ✅
+- 2.2: Finite difference methods (forward, central) ✅
+- 2.3: Partial derivatives ✅
+- 2.4: Gradient computation ✅
+- 2.5: Chain rule ✅
+- 2.6: Numerical verification ✅
+- 2.7: Step-size sensitivity experiment ✅
+
+**Verification Results:**
+- 229 tests passing (102 calculus + 127 linear algebra, 0 failures)
+- Numerical verification: all analytical derivatives match central differences within 1e-6
+- Activation derivatives (sigmoid, tanh, ReLU) verified against numerical approximations
+- Gradient verification against analytical gradients for quadratic, mixed, and 3D functions
+- Ruff: all checks passed
+- Ruff format: all files formatted
+- Mypy: no issues found
+
+**Learnings:**
+- Central differences are O(h²) accurate — typically 100x better than forward differences
+- Optimal step size h ≈ 1e-5 for float64; too small causes roundoff errors
+- ReLU derivative is piecewise constant (0 or 1), so numerical verification at discontinuity requires care
+- Sigmoid/tanh derivatives depend on function output, leading to vanishing gradients
+- The chain rule IS backpropagation — each layer computes local derivatives, backward pass multiplies them
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 2 to git
+2. Begin Stage 3: Probability & Statistics Foundations
+3. Implement probability distributions
+4. Implement entropy, cross-entropy, likelihood
+
 ## Template for Future Entries
 
 ### YYYY-MM-DD — Stage N: Stage Name

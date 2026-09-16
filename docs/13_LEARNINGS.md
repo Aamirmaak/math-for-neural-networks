@@ -236,3 +236,33 @@ As each stage completes, specific entries will be added to this document:
 ### Open Questions
 - How do conditioning and numerical stability affect very large matrix operations?
 - When does from-scratch eigenvalue implementation become educational rather than tedious?
+
+---
+
+## Stage 2: Calculus — Learnings (2026-09-16)
+
+### Confirmed
+- Central differences are O(h²) accurate — typically 100x better than forward differences for smooth functions
+- Optimal step size h ≈ 1e-5 for float64 precision; too small causes roundoff errors (floating-point subtraction cancellation)
+- Too large h causes truncation error; too small h causes roundoff error — there's a sweet spot
+- Sigmoid derivative σ'(x) = σ(x)(1-σ(x)) — elegant formula that avoids recomputing exp
+- Sigmoid saturates for |x| > 5 → derivatives vanish → no learning (vanishing gradient problem)
+- ReLU derivative is piecewise constant (0 or 1) — no saturation for positive inputs
+- The chain rule IS backpropagation — each layer computes local derivatives, backward pass multiplies them
+- Deep sigmoid networks suffer from vanishing gradients: product of many small derivatives → zero
+- Gradient magnitude tells us steepness; gradient direction tells us steepest ascent
+- Gradient descent follows negative gradient to find minima
+
+### Surprises
+- ReLU derivative at x=0 is undefined mathematically, but we define it as 0 in practice (convention)
+- The chain rule for a single neuron (z = wx + b, loss = (z-target)²) produces clean, interpretable gradients
+- Product of 10 sigmoid derivatives can be as small as ~1e-4 — gradient essentially vanishes
+
+### Corrections
+- Fixed relu_derivative to handle scalar inputs (bool.has no .astype method) — need np.asarray first
+- Fixed log_func to validate domain (x > 0) rather than relying on NumPy's warning behavior
+
+### Open Questions
+- How do second-order derivatives (Hessian) affect optimization landscape?
+- What is the relationship between condition number and gradient descent convergence rate?
+- How do adaptive learning rates (Adam) compensate for varying gradient magnitudes?
