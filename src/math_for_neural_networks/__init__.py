@@ -4,10 +4,10 @@ math-for-neural-networks
 An educational/research-oriented Python toolkit for learning the mathematics
 behind neural networks through implementation, visualization, and numerical verification.
 
-Status: Stage 3 — Probability & Statistics Foundations (Pre-Alpha)
+Status: Stage 4 — Optimization (Pre-Alpha)
 """
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 __author__ = "Math for Neural Networks Contributors"
 __license__ = "MIT"
 
@@ -18,10 +18,11 @@ __description__ = (
 )
 __url__ = "https://github.com/Aamirmaak/math-for-neural-networks"
 
-from math_for_neural_networks import calculus, linear_algebra, probability
+from math_for_neural_networks import calculus, linear_algebra, optimization, probability
 
 __all__ = [
     "linear_algebra",
     "calculus",
     "probability",
+    "optimization",
 ]

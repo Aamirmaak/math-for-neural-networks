@@ -22,6 +22,57 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.5.0] — 2026-09-16 (Stage 4: Optimization Algorithms)
+
+### Added
+- **optimization/diagnostics.py**: OptResult dataclass, check_convergence, has_finite_values
+- **optimization/objectives.py**: Quadratic, quartic, sphere, Rosenbrock, Beale, Ackley objective functions with analytical gradients; linear regression loss, logistic loss with gradients
+- **optimization/gradient_descent.py**: Gradient descent with configurable learning rate, convergence criteria (gradient norm, parameter change, objective change), history tracking
+- **optimization/momentum.py**: SGD with momentum (velocity accumulation, beta coefficient)
+- **optimization/adam.py**: Adam optimizer (first/second moments, bias correction, epsilon) + adam_step function for single-step updates
+
+### Tests
+- 91 tests across 6 test files (all passing)
+- Unit tests for all objective functions and their gradients
+- Gradient descent convergence tests with various learning rates
+- Momentum tests with different beta values
+- Adam tests including bias correction verification
+- Numerical gradient verification against analytical forms
+- Edge case tests (zero gradients, extreme parameters, invalid inputs)
+
+### Examples
+- examples/gradient_descent.py — 1D/2D GD, learning rate comparison, module usage
+- examples/gradient_descent_2d.py — Contour visualization, Rosenbrock, starting point effect
+- examples/learning_rate.py — LR grid search, scheduling concept, curvature interaction
+- examples/momentum.py — Narrow valley problem, momentum solution, beta comparison
+- examples/adam.py — Adam step-by-step, bias correction, three-way optimizer comparison
+
+### Experiments
+- experiments/lr_sensitivity.py — Learning rate sensitivity analysis
+- experiments/contour_path.py — 2D GD path visualization (quadratic + Rosenbrock)
+- experiments/momentum_vs_gd.py — Momentum vs GD comparison with convergence history
+- experiments/optimizer_comparison.py — Adam vs Momentum vs GD on quadratic and Rosenbrock
+- experiments/init_effect.py — Initialization effect on convergence (convex vs non-convex)
+
+### Changed
+- Updated README.md with Stage 4 status, optimization usage examples
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.5.0, added optimization import
+- Updated docs/03_PROJECT_PLAN.md — Stage 4 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 4 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+
+### Design Decisions
+- Adam convergence check AFTER update step (not before) to avoid false convergence at t=0
+- Scalar objective functions use np.asarray to handle both scalar and array inputs
+- Mathematical notation (X, dLdw) requires per-file ruff ignores (N803, N806)
+- Functions over classes for optimizer implementations
+- Convergence criteria: gradient norm, parameter change, objective change (all configurable)
+- Bias correction: m_hat = m/(1-beta1^t), v_hat = v/(1-beta2^t)
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.4.0] — 2026-09-16 (Stage 3: Probability & Statistics Foundations)
 
 ### Added

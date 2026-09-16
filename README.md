@@ -1,6 +1,6 @@
 # Math for Neural Networks
 
-**Status: Stage 2 — Calculus (Pre-Alpha)**
+**Status: Stage 4 — Optimization (Pre-Alpha)**
 
 An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification.
 
@@ -39,11 +39,39 @@ This project addresses that educational gap by providing a programmable mathemat
 
 ## Current Status
 
-**Stage 2 Implemented:** Calculus — analytical derivatives, numerical differentiation, partial derivatives, gradients, and chain rule. All operations tested and numerically verified.
+**Stage 4 Implemented:** Optimization — gradient descent, SGD with momentum, Adam optimizer, convergence diagnostics, objective functions, numerical verification.
 
-**Stage 1 Implemented:** Linear algebra primitives — vectors, matrices, operations, norms, cosine similarity, projections, linear transformations, eigenvalues/eigenvectors. All operations tested and numerically verified against NumPy.
+**Stage 3 Implemented:** Probability & Statistics — distributions, entropy, cross-entropy, KL divergence, MLE, softmax, log-sum-exp. All verified.
+
+**Stage 2 Implemented:** Calculus — analytical derivatives, numerical differentiation, partial derivatives, gradients, and chain rule. All verified.
+
+**Stage 1 Implemented:** Linear algebra primitives — vectors, matrices, operations, norms, cosine similarity, projections, linear transformations, eigenvalues/eigenvectors. All verified against NumPy.
 
 **Stage 0 Complete:** Project foundation established — documentation, architecture, repository structure, testing strategy, experiment strategy, and distribution plan.
+
+### Implemented (Stage 4) — Optimization
+- Gradient descent with configurable learning rate, convergence criteria
+- SGD with momentum (velocity accumulation, beta coefficient)
+- Adam optimizer (first/second moments, bias correction, epsilon)
+- Adam single-step function for educational clarity
+- Convergence diagnostics: gradient norm, parameter change, objective change
+- Objective functions: quadratic, quartic, sphere, Rosenbrock, Beale, Ackley
+- Machine learning objectives: linear regression loss, logistic loss + gradients
+- Numerical gradient verification against analytical gradients
+- 91 passing tests (unit + numerical verification)
+- Educational examples: gradient descent, learning rate, momentum, Adam
+- Experiments: LR sensitivity, 2D contour path, momentum vs GD, Adam comparison
+
+### Implemented (Stage 3) — Probability & Statistics
+- Probability fundamentals: axioms, complement, union, intersection, conditional, Bayes
+- Distributions: Bernoulli, Binomial, Categorical, Uniform, Normal
+- Moments: expectation, variance, standard deviation
+- Information theory: entropy, cross-entropy, KL divergence
+- Likelihood: MLE for Bernoulli, Gaussian, categorical models
+- Numerical stability: log-sum-exp, softmax, log-softmax, sigmoid
+- 149 passing tests (unit + numerical verification)
+- Educational examples: entropy, cross-entropy, MLE
+- Experiments: entropy vs concentration, cross-entropy loss, MLE convergence
 
 ### Implemented (Stage 2) — Calculus
 - Analytical derivatives: quadratic, cubic, polynomial, sin, cos, exp, log
@@ -90,10 +118,10 @@ This project addresses that educational gap by providing a programmable mathemat
 - Log probability, entropy, cross-entropy
 - Likelihood, maximum likelihood
 
-### Optimization (Planned)
-- Gradient descent, learning rate
-- Stochastic gradient descent (conceptual)
-- Momentum, Adam (conceptual)
+### Optimization (Implemented)
+- Gradient descent with learning rate
+- SGD with momentum
+- Adam optimizer with bias correction
 
 ### Neural-Network Mathematics (Planned)
 - Linear layers, activation functions

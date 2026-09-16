@@ -51,11 +51,11 @@ src/math_for_neural_networks/
 │   └── verification.py            # Numerical verification
 ├── optimization/                  # Requires calculus, linear_algebra
 │   ├── __init__.py
-│   ├── gradient_descent.py        # GD, LR schedules
-│   ├── sgd.py                     # Stochastic GD (conceptual)
-│   ├── momentum.py                # Momentum, Nesterov
-│   ├── adam.py                    # Adam (conceptual)
-│   └── verification.py            # Convergence verification
+│   ├── diagnostics.py            # OptResult, convergence checks
+│   ├── objectives.py             # Test functions + gradients
+│   ├── gradient_descent.py       # GD with convergence criteria
+│   ├── momentum.py               # SGD with momentum
+│   └── adam.py                   # Adam optimizer + adam_step
 ├── neural_networks/               # Requires all above
 │   ├── __init__.py
 │   ├── layers.py                  # Linear, Embedding, LayerNorm

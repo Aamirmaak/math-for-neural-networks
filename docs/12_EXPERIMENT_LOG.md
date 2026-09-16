@@ -49,7 +49,11 @@ PASS/FAIL, action items, follow-up experiments.
 
 | ID | Name | Stage | Category | Status | Date |
 |----|------|-------|----------|--------|------|
-| — | *No experiments executed yet* | — | — | — | — |
+| EXP-401 | Learning Rate Sensitivity Analysis | 4 | ablation | COMPLETE | 2026-09-16 |
+| EXP-402 | 2D Gradient Descent Path | 4 | visualization | COMPLETE | 2026-09-16 |
+| EXP-403 | Momentum vs Gradient Descent | 4 | comparison | COMPLETE | 2026-09-16 |
+| EXP-404 | Adam vs Momentum vs GD | 4 | comparison | COMPLETE | 2026-09-16 |
+| EXP-405 | Initialization Effect on Convergence | 4 | ablation | COMPLETE | 2026-09-16 |
 
 ---
 
@@ -151,6 +155,40 @@ PASS/FAIL, action items, follow-up experiments.
 **Category:** visualization
 **Hypothesis:** Step, cosine, warmup schedules produce expected curves
 **Planned:** Stage 4 completion
+
+---
+
+## Stage 4 Experiments (Completed)
+
+### EXP-401: Learning Rate Sensitivity Analysis
+**Category:** ablation
+**Status:** COMPLETE
+**Hypothesis:** There is an optimal learning rate range; too small = slow, too large = diverge.
+**Result:** For f(x) = x^2, optimal lr is 0.2-0.5. lr = 0.5 gives exact convergence in 1 step. lr > 0.5 causes oscillation. lr >= 1.0 causes divergence. Max stable lr = 1/a for f(x) = a*x^2.
+
+### EXP-402: 2D Gradient Descent Path
+**Category:** visualization
+**Status:** COMPLETE
+**Hypothesis:** GD follows steepest descent on quadratic; struggles on non-convex Rosenbrock.
+**Result:** Quadratic converges cleanly to origin. Rosenbrock: GD gets close (distance 0.13 from minimum after 5000 iterations) but can't reach exact minimum due to narrow valley.
+
+### EXP-403: Momentum vs Gradient Descent
+**Category:** comparison
+**Status:** COMPLETE
+**Hypothesis:** Momentum accelerates convergence on ill-conditioned functions.
+**Result:** beta=0.5 gives moderate speedup. beta=0.9 gives significant speedup. beta=0.95-0.99 causes overshooting. On f(x,y) = x^2 + 10*y^2, momentum with beta=0.5 reaches 0.00004 loss vs GD's 0.198 after 30 iterations.
+
+### EXP-404: Adam vs Momentum vs GD
+**Category:** comparison
+**Status:** COMPLETE
+**Hypothesis:** Adam combines best of momentum and adaptive scaling.
+**Result:** On Rosenbrock: Adam reaches minimum in 1455 iterations, Momentum in 2521, GD doesn't converge in 5000. Adam's per-parameter scaling is most effective on anisotropic functions.
+
+### EXP-405: Initialization Effect on Convergence
+**Category:** ablation
+**Status:** COMPLETE
+**Hypothesis:** Starting point matters more for non-convex than convex functions.
+**Result:** Convex (quadratic): all starting points converge to same minimum (17-22 iterations). Non-convex (Rosenbrock): different starts converge to different distances (0.096-0.294 from minimum). Some starting points cause GD to diverge.
 
 ---
 

@@ -326,6 +326,77 @@ Implemented all core probability and statistics operations: probability axioms, 
 2. Begin Stage 4: Optimization Algorithms
 3. Implement gradient descent, SGD, momentum, Adam
 
+---
+
+## 2026-09-16 — Stage 4: Optimization Algorithms
+
+**Status:** ✅ IMPLEMENTED + TESTED + VERIFIED
+
+**Summary:**
+Implemented gradient descent, SGD with momentum, and Adam optimizer with convergence diagnostics and objective functions. All optimizers include educational docstrings explaining the math, convergence criteria, and ML connections. Numerical verification confirms gradient correctness against analytical forms.
+
+**Artifacts Created/Modified:**
+
+### Source Modules (5 files)
+- `src/math_for_neural_networks/optimization/__init__.py` — Public API exports
+- `src/math_for_neural_networks/optimization/diagnostics.py` — OptResult dataclass, check_convergence, has_finite_values
+- `src/math_for_neural_networks/optimization/objectives.py` — 8 test functions (quadratic, quartic, sphere, Rosenbrock, Beale, Ackley) + 2 ML objectives (linear regression, logistic loss) with gradients
+- `src/math_for_neural_networks/optimization/gradient_descent.py` — GD with convergence criteria (gradient norm, parameter change, objective change)
+- `src/math_for_neural_networks/optimization/momentum.py` — SGD with momentum (v_t = beta*v + grad, theta -= lr*v)
+- `src/math_for_neural_networks/optimization/adam.py` — Adam optimizer (first/second moments, bias correction, epsilon) + adam_step function
+
+### Test Files (6 files, 91 tests)
+- `tests/test_optimization/test_objectives.py` — 28 tests for objective functions and gradients
+- `tests/test_optimization/test_gradient_descent.py` — 19 tests for GD and diagnostics
+- `tests/test_optimization/test_momentum.py` — 10 tests for momentum
+- `tests/test_optimization/test_adam.py` — 17 tests for Adam and adam_step
+- `tests/test_optimization/test_numerical_verification.py` — 17 tests for gradient verification
+- `tests/test_optimization/conftest.py` — Shared fixtures
+
+### Examples (5 files)
+- `examples/gradient_descent.py` — 1D/2D GD, learning rate comparison, module usage
+- `examples/gradient_descent_2d.py` — Contour visualization, Rosenbrock, starting point effect
+- `examples/learning_rate.py` — LR grid search, scheduling concept, curvature interaction
+- `examples/momentum.py` — Narrow valley problem, momentum solution, beta comparison
+- `examples/adam.py` — Adam step-by-step, bias correction, three-way optimizer comparison
+
+### Experiments (5 files)
+- `experiments/lr_sensitivity.py` — Learning rate sensitivity analysis
+- `experiments/contour_path.py` — 2D GD path visualization (quadratic + Rosenbrock)
+- `experiments/momentum_vs_gd.py` — Momentum vs GD comparison with convergence history
+- `experiments/optimizer_comparison.py` — Adam vs Momentum vs GD on quadratic and Rosenbrock
+- `experiments/init_effect.py` — Initialization effect on convergence (convex vs non-convex)
+
+**Milestones Completed:**
+- 4.1: Gradient descent with fixed LR and convergence criteria ✅
+- 4.2: SGD with momentum ✅
+- 4.3: Adam optimizer with bias correction ✅
+- 4.4: Objective functions (quadratic, quartic, sphere, Rosenbrock, Beale, Ackley) ✅
+- 4.5: Numerical gradient verification ✅
+- 4.6: Educational examples and experiments ✅
+
+**Verification Results:**
+- 469 tests passing (91 optimization + 149 probability + 102 calculus + 127 linear algebra, 0 failures)
+- Numerical verification: all gradients match analytical forms within tolerance
+- Ruff: all checks passed (after fixing imports and formatting)
+- Ruff format: all files formatted
+- Mypy: no issues found (28 source files)
+
+**Learnings:**
+- Adam convergence check must happen AFTER computing the update step, not before (at t=0 moments are zero causing false convergence)
+- Scalar objective functions (quadratic, quartic) need np.asarray to handle both scalar and array inputs
+- Mathematical notation (X for feature matrix, dLdw for partial derivatives) requires per-file ruff ignores
+- The bias correction factor 1/(1-beta^t) starts large (10x at t=1 for beta=0.9) and decays to 1
+- Rosenbrock function is genuinely hard for vanilla GD — even 5000 iterations don't reach the exact minimum
+- Initialization matters more for non-convex functions than convex ones
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 4 to git
+2. Begin Stage 5: Neural-Network Mathematics
+3. Implement linear layers, activations, loss functions, embeddings
+
 ## Template for Future Entries
 
 ### YYYY-MM-DD — Stage N: Stage Name

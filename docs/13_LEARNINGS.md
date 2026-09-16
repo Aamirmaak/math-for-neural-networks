@@ -266,3 +266,34 @@ As each stage completes, specific entries will be added to this document:
 - How do second-order derivatives (Hessian) affect optimization landscape?
 - What is the relationship between condition number and gradient descent convergence rate?
 - How do adaptive learning rates (Adam) compensate for varying gradient magnitudes?
+
+---
+
+## Stage 4: Optimization — Learnings (2026-09-16)
+
+### Confirmed
+- Gradient descent converges on convex functions; convergence rate depends on condition number
+- Learning rate stability condition: lr < 1/a for f(x) = a*x^2 (derived analytically, verified experimentally)
+- Momentum with beta=0.5 gives faster convergence than plain GD on anisotropic functions (f(x,y) = x^2 + 10*y^2)
+- Momentum with beta=0.9-0.99 can cause overshooting and slower convergence on some problems
+- Adam's bias correction factor 1/(1-beta^t) is essential: without it, early steps are severely underestimated
+- Adam converges faster than both GD and momentum on most problems due to per-parameter adaptive learning rates
+- Rosenbrock function is genuinely hard: vanilla GD doesn't reach the minimum even after 5000 iterations
+- Initialization matters more for non-convex functions (Rosenbrock) than convex ones (quadratic)
+- The Adam optimizer requires convergence check AFTER computing the update step, not before (at t=0 moments are zero)
+
+### Surprises
+- lr = 0.5 gives exact convergence in 1 step for f(x) = x^2 — a special case where the update perfectly cancels the position
+- On Rosenbrock, Adam (lr=0.01) reaches the minimum in 1455 iterations while GD (lr=0.001) doesn't converge in 5000
+- Some starting points on Rosenbrock (e.g., (3, 2)) cause GD to diverge — the gradient points away from the minimum
+- The bias correction factor starts at 10x (t=1, beta=0.9) and quickly decays to ~1x — early steps are heavily corrected
+
+### Corrections
+- Fixed Adam/momentum convergence check to happen AFTER the update step (was before, causing false convergence at t=0)
+- Fixed scalar objective functions (quadratic, quartic) to use np.asarray for consistent array handling
+- Fixed naming conventions: X (feature matrix) and dLdw (partial derivatives) require per-file ruff ignores
+
+### Open Questions
+- How does the condition number of the Hessian affect convergence rate of different optimizers?
+- What is the theoretical optimal learning rate schedule for non-convex functions?
+- How do second-order methods (Newton, quasi-Newton) compare to first-order methods (Adam) in practice?
