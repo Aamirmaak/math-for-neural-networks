@@ -22,6 +22,64 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.7.0] — 2026-09-16 (Stage 6: Backpropagation & Training)
+
+### Added
+- **autograd/__init__.py**: Public API exports for autograd module
+- **autograd/value.py**: Scalar Value class with backward() for automatic differentiation, get_topo_order() for graph inspection
+- **neural_networks/backprop.py**: gradient_check (analytical vs numerical), gradient_check_scalar, affine_backward (dX, dW, db), sigmoid_backward, relu_backward, tanh_backward, mse_backward, softmax_backward, sigmoid_bce_backward
+- **neural_networks/training.py**: NetworkParams dataclass, TrainingMetrics dataclass, init_params, forward (2-layer network), backward (manual backprop), sgd_step, train (full training loop), compute_numerical_gradients
+
+### Tests
+- 87 tests across 4 test files (all passing)
+- 33 autograd Value tests (ops, gradients, accumulation, topo sort, edge cases)
+- 12 numerical verification tests (autograd vs numerical differentiation)
+- 19 backprop tests (gradient_check, affine_backward, activation backward, loss backward, softmax+CE, sigmoid+BCE)
+- 23 training tests (params, forward, backward, sgd, numerical gradients, training loop)
+
+### Examples
+- examples/computational_graph.py — Graph construction, chain rule, activation, gradient accumulation, topo sort
+- examples/manual_backpropagation.py — Single neuron, numerical verification, two-layer network, matrix backprop
+- examples/autograd_demo.py — Basic ops, single neuron, gradient accumulation, deep network, loss landscape
+- examples/training_demo.py — Forward/backward, training loop, activation comparison, LR effect, gradient norm
+
+### Experiments
+- experiments/manual_vs_numerical.py — Manual backprop vs numerical gradients
+- experiments/toy_network_training.py — Toy binary classification training
+- experiments/learning_rate_effect.py — LR comparison
+- experiments/gradient_norm_training.py — Gradient norm during training
+- experiments/activation_gradients.py — Activation gradient behavior
+- experiments/vanishing_gradient.py — Vanishing gradient intuition
+- experiments/softmax_ce_gradient.py — Softmax + CE gradient identity
+
+### Changed
+- Updated README.md with Stage 6 status, backpropagation usage examples
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.7.0, added autograd import
+- Updated docs/03_PROJECT_PLAN.md — Stage 6 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 6 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+
+### Design Decisions
+- Scalar autograd for educational clarity (understanding computational graphs)
+- Manual backpropagation in NumPy arrays for practical neural network training
+- Gradient checking via central differences for verification
+- Softmax+CE gradient identity (p-y) for simplified backpropagation
+- Sigmoid+BCE gradient identity with 1/n normalization
+- Functions over classes for all implementations (except dataclasses for state)
+
+### Key Mathematical Identities
+- Softmax + CE: dL/dz = softmax(z) - y
+- Sigmoid + BCE: dL/dz = (1/n)(sigma(z) - y)
+- Affine: dL/dX = dL/dZ @ W, dL/dW = dL/dZ^T @ X, dL/db = sum(dL/dZ)
+- Sigmoid: da/dx = a(1-a)
+- Tanh: da/dx = 1-a^2
+- ReLU: da/dx = 1 if x>0 else 0
+- MSE: dL/dy_pred = (2/n)(y_pred - y_true)
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.6.0] — 2026-09-16 (Stage 5: Neural Network Mathematics)
 
 ### Added

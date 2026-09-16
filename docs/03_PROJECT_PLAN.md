@@ -9,8 +9,8 @@
 | 2 | Calculus & Numerical Differentiation | Derivatives, gradients, chain rule, verification | Stage 1 | ✅ Implemented |
 | 3 | Probability & Statistics Foundations | Distributions, entropy, cross-entropy, MLE | Stage 1 | ✅ Implemented |
 | 4 | Optimization Algorithms | GD, SGD, momentum, Adam | Stage 2 | ✅ Implemented |
-| 5 | Neural-Network Mathematics | Layers, activations, losses, embeddings | Stage 1, 3 | 📋 Planned |
-| 6 | Backpropagation & Training Loops | Autograd, training, validation | Stage 2, 5 | 📋 Planned |
+| 5 | Neural-Network Mathematics | Layers, activations, losses, embeddings | Stage 1, 3 | ✅ Implemented |
+| 6 | Backpropagation & Training Loops | Autograd, training, validation | Stage 2, 5 | ✅ Implemented |
 | 7 | Experiments & Visualization Suite | Structured experiments, plots, notebooks | Stage 4, 6 | 📋 Planned |
 | 8 | PyTorch Comparison/Validation | Numerical parity checks | Stage 6 | 📋 Planned |
 
@@ -64,28 +64,28 @@
 | 4.6 | Optimization submodule API, documentation | Import tests, docstring coverage |
 
 ### Stage 5: Neural-Network Mathematics
-**Checkpoint:** Linear layer + activations + loss compose correctly
+**Checkpoint:** Linear layer + activations + loss compose correctly ✅
 
 | Milestone | Deliverable | Verification |
 |-----------|-------------|--------------|
-| 5.1 | `Linear` layer (weight matrix + bias) | Shape correctness, forward pass |
-| 5.2 | Activations: Sigmoid, ReLU, Tanh, GELU, Softmax | Numerical verification of derivatives |
-| 5.3 | Loss functions: MSE, CrossEntropy, BCE | Gradient verification |
+| 5.1 | `Linear` layer (weight matrix + bias) ✅ | Shape correctness, forward pass ✅ |
+| 5.2 | Activations: Sigmoid, ReLU, Tanh, GELU, Softmax ✅ | Numerical verification of derivatives ✅ |
+| 5.3 | Loss functions: MSE, CrossEntropy, BCE ✅ | Gradient verification ✅ |
 | 5.4 | Embeddings (lookup + gradient) | Gradient flows to correct indices |
-| 5.5 | LayerNorm, RMSNorm | Forward/backward shape correctness |
-| 5.6 | Attention (scaled dot-product) | Numerical verification |
-| 5.7 | Neural networks submodule API, documentation | Import tests, docstring coverage |
+| 5.5 | LayerNorm, RMSNorm ✅ | Forward/backward shape correctness ✅ |
+| 5.6 | Attention (scaled dot-product) ✅ | Numerical verification ✅ |
+| 5.7 | Neural networks submodule API, documentation ✅ | Import tests, docstring coverage ✅ |
 
 ### Stage 6: Backpropagation & Training Loops
-**Checkpoint:** End-to-end training on toy problem (XOR, MNIST subset)
+**Checkpoint:** End-to-end training on toy problem (XOR, MNIST subset) ✅
 
 | Milestone | Deliverable | Verification |
 |-----------|-------------|--------------|
-| 6.1 | Computation graph / autograd (minimal) | Gradient check vs. finite differences |
+| 6.1 | Computation graph / autograd (minimal) ✅ | Gradient check vs. finite differences ✅ |
 | 6.2 | `Sequential` container, `Module` base | Composition works |
-| 6.3 | Training loop (forward, loss, backward, step) | Loss decreases on toy problem |
+| 6.3 | Training loop (forward, loss, backward, step) ✅ | Loss decreases on toy problem ✅ |
 | 6.4 | Validation, checkpointing, logging | Reproducible runs with seeds |
-| 6.5 | Backpropagation submodule API, documentation | Import tests, docstring coverage |
+| 6.5 | Backpropagation submodule API, documentation ✅ | Import tests, docstring coverage ✅ |
 
 ### Stage 7: Experiments & Visualization Suite
 **Checkpoint:** Reproducible experiment reports with plots

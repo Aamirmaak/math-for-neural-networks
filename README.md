@@ -1,6 +1,6 @@
 # Math for Neural Networks
 
-**Status: Stage 5 — Neural Network Mathematics (Pre-Alpha)**
+**Status: Stage 6 — Backpropagation & Training (Pre-Alpha)**
 
 An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification.
 
@@ -38,6 +38,8 @@ This project addresses that educational gap by providing a programmable mathemat
 - Educators who want computational demonstrations
 
 ## Current Status
+
+**Stage 6 Implemented:** Backpropagation & Training — scalar autograd engine, gradient checking, affine/activation/loss backpropagation, simple neural network forward/backward, training loop with SGD. All verified with 87 new tests.
 
 **Stage 5 Implemented:** Neural Network Mathematics — affine transformation, activation functions (sigmoid, tanh, ReLU, GELU), softmax, loss functions (MSE, BCE, CCE, logits+CE), attention mathematics, layer normalization. All verified with 137 tests.
 
@@ -113,6 +115,20 @@ This project addresses that educational gap by providing a programmable mathemat
 - Numerical verification against NumPy for all operations
 - 127 passing tests (unit + numerical verification)
 
+### Implemented (Stage 6) — Backpropagation & Training
+- Scalar autograd engine (Value class with backward pass)
+- Computational graph construction and topological ordering
+- Gradient checking (analytical vs numerical finite differences)
+- Affine layer backpropagation (dX, dW, db for Z=XW^T+b)
+- Activation backpropagation (sigmoid, tanh, ReLU)
+- Loss backpropagation (MSE, softmax+CE identity, sigmoid+BCE identity)
+- Simple 2-layer neural network forward/backward
+- Training loop with SGD optimizer
+- Numerical gradient verification for all components
+- 87 passing tests (unit + numerical verification)
+- Educational examples: computational graph, manual backprop, autograd demo, training demo
+- Experiments: manual vs numerical, toy training, learning rate effect, gradient norm, activation gradients, vanishing gradient, softmax+CE identity
+
 ## Planned Capabilities (MVP Roadmap)
 
 ### Linear Algebra (Planned)
@@ -143,6 +159,15 @@ This project addresses that educational gap by providing a programmable mathemat
 - Loss functions (MSE, binary CE, categorical CE, logits+CE)
 - Attention mathematics (scaled dot-product, masking)
 - Layer normalization
+
+### Backpropagation & Training (Implemented)
+- Scalar autograd engine (Value class with backward pass)
+- Gradient checking (analytical vs numerical)
+- Affine layer backpropagation
+- Activation backpropagation (sigmoid, tanh, ReLU)
+- Loss backpropagation (MSE, softmax+CE, sigmoid+BCE)
+- Simple neural network forward/backward
+- Training loop with SGD
 
 ## Installation
 
@@ -285,7 +310,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ## Limitations
 
-- **Pre-alpha:** Stages 1-5 implemented; backpropagation and training loops pending
+- **Pre-alpha:** Stages 1-6 implemented; advanced training and experiments pending
 - **Educational focus:** Not a production ML framework
 - **No GPU acceleration:** Pure CPU/NumPy implementation
 - **No automatic differentiation:** Manual implementation for learning purposes
@@ -301,7 +326,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 | 3 | Probability & statistics foundations | ✅ Implemented |
 | 4 | Optimization algorithms | ✅ Implemented |
 | 5 | Neural-network mathematics | ✅ Implemented |
-| 6 | Backpropagation & training loops | 📋 Planned |
+| 6 | Backpropagation & training loops | ✅ Implemented |
 | 7 | Experiments & visualization suite | 📋 Planned |
 | 8 | PyTorch comparison/validation | 📋 Planned |
 
