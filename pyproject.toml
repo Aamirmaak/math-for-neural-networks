@@ -7,7 +7,7 @@ name = "math-for-neural-networks"
 version = "0.1.0"
 description = "An educational/research-oriented Python toolkit for learning the mathematics behind neural networks through implementation, visualization, and numerical verification."
 readme = "README.md"
-license = {text = "MIT"}
+license = "MIT"
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.24.0",
@@ -18,11 +18,12 @@ classifiers = [
     "Intended Audience :: Education",
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Education",
@@ -57,12 +58,15 @@ experiment = [
     "pandas>=2.0.0",
     "scipy>=1.11.0",
 ]
+comparison = [
+    "torch>=2.0.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/Aamirmaak/math-for-neural-networks"
 Repository = "https://github.com/Aamirmaak/math-for-neural-networks"
 Issues = "https://github.com/Aamirmaak/math-for-neural-networks/issues"
-Documentation = "https://github.com/Aamirmaak/math-for-neural-networks/tree/main/docs"
+Documentation = "https://github.com/Aamirmaak/math-for-neural-networks/tree/master/docs"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -100,7 +104,7 @@ select = [
 ignore = [
     "E501",  # line too long (handled by formatter)
 ]
-per-file-ignores = { "tests/*" = ["S101", "T201", "N806", "E741", "B905"], "experiments/*" = ["T201", "F541", "F401", "I001", "B007", "N806"], "src/math_for_neural_networks/optimization/objectives.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/attention.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/layers.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/backprop.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/training.py" = ["N803", "N806"] }
+per-file-ignores = { "tests/*" = ["S101", "T201", "N806", "E741", "B905"], "tests/comparison/conftest.py" = ["F401"], "experiments/*" = ["T201", "F541", "F401", "I001", "B007", "N806"], "src/math_for_neural_networks/optimization/objectives.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/attention.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/layers.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/backprop.py" = ["N803", "N806"], "src/math_for_neural_networks/neural_networks/training.py" = ["N803", "N806"] }
 
 [tool.ruff.format]
 quote-style = "double"

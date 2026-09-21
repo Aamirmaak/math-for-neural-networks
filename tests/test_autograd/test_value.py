@@ -267,11 +267,11 @@ class TestTopologicalOrder:
         c = b * 2
         d = c**2
         topo = get_topo_order(d)
-        # d should be last, c before d, b before c
+        # d should be last, c before d, b before c, a before b
         assert topo[-1] == d
-        assert topo[-2] == c
-        assert topo[-3] == b
-        assert a in topo
+        assert topo.index(c) < topo.index(d)
+        assert topo.index(b) < topo.index(c)
+        assert topo.index(a) < topo.index(b)
 
 
 class TestEdgeCases:

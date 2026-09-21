@@ -22,6 +22,63 @@ Each entry may include status: `[PLANNED]`, `[IMPLEMENTED]`, `[VERIFIED]`, `[DEF
 
 ---
 
+## [0.1.0] — 2026-09-21 (Stage 10: Portfolio-Grade Packaging & Release Readiness) [VERIFIED]
+
+### Added
+- **.github/workflows/ci.yml**: GitHub Actions CI — runs on push/PR, tests Python 3.10–3.13, lint, format, type check, tests
+- **CITATION.cff**: Citation metadata for academic use
+- **docs/RELEASE_CHECKLIST.md**: Pre-release checklist covering tests, docs, packaging, security
+- **README.md**: Complete rewrite with mathematical roadmap, quick start, repository structure, project status table
+
+### Changed
+- **pyproject.toml**: Version 1.0.0 → 0.1.0 (pre-alpha, no public release yet); license format updated to SPDX expression; added Python 3.13/3.14 classifiers; removed deprecated license classifier
+- **src/math_for_neural_networks/__init__.py**: Version 1.0.0 → 0.1.0
+- **CONTRIBUTING.md**: Removed broken pre-commit reference, fixed lint command to target src/
+
+### Removed
+- Deprecated license classifier from pyproject.toml (PEP 639 compliance)
+
+---
+
+## [0.9.0] — 2026-09-16 (Stage 8: PyTorch Comparison & Framework Parity)
+
+### Added
+- **tests/comparison/conftest.py**: Skip markers (requires_torch), assert_close utilities with diagnostic output
+- **tests/comparison/test_pytorch_linear.py**: 6 tests — affine transform parity (single/batch, no-bias/with-bias, nn.Linear equivalence, float32)
+- **tests/comparison/test_pytorch_activations.py**: 10 tests — sigmoid, tanh, ReLU, GELU forward and derivative parity
+- **tests/comparison/test_pytorch_softmax.py**: 8 tests — softmax standard/large values/batched/axis, log-softmax stability
+- **tests/comparison/test_pytorch_losses.py**: 8 tests — MSE, BCE, CCE, cross-entropy with logits, gradient parity
+- **tests/comparison/test_pytorch_gradients.py**: 9 tests — affine, activation, softmax+CE, sigmoid+BCE, network gradient parity
+- **tests/comparison/test_pytorch_network.py**: 3 tests — 2-layer network forward/loss/gradient parity
+- **tests/comparison/test_pytorch_optimizers.py**: 5 tests — SGD, Momentum, Adam single-step and multi-step parity
+- **examples/pytorch_comparison/from_scratch_vs_pytorch.py**: Educational side-by-side comparison example
+- **docs/15_PYTORCH_COMPARISON.md**: Framework comparison documentation
+
+### Tests
+- 49 new comparison tests (752 total)
+- All tests pass with near-machine-epsilon errors
+- Core tests pass without PyTorch (skip markers active)
+
+### Changed
+- Updated README.md with Stage 8 status
+- Updated src/math_for_neural_networks/__init__.py — Version bump to 0.9.0
+- Updated docs/03_PROJECT_PLAN.md — Stage 8 marked Implemented
+- Updated docs/11_PROGRESS_LOG.md — Stage 8 completion entry
+- Updated docs/14_CHANGELOG.md — This entry
+- Updated pyproject.toml — Added optional `comparison` dependency group (torch>=2.0.0)
+- Fixed tests/test_autograd/test_value.py — Flaky topological sort test
+
+### Design Decisions
+- PyTorch is optional — core toolkit works without it
+- All comparison tests use float64 for parity
+- Convention differences documented (softmax_backward 1/n factor, CCE eps)
+- CPU-only for reproducibility (no CUDA non-determinism)
+- Skip markers provide clear messages when PyTorch unavailable
+
+### Status: [IMPLEMENTED] [TESTED] [VERIFIED]
+
+---
+
 ## [0.8.0] — 2026-09-16 (Stage 7: Integrated Experiments & Visualization)
 
 ### Added
@@ -433,11 +490,14 @@ All Stage 0 items: `[DOCUMENTED]` (infrastructure validated: install, import, li
 ### [0.8.0] — Stage 7: Experiments & Visualization Suite (Planned)
 **Target:** Experiment runner, visualizations, notebooks
 
-### [0.9.0] — Stage 8: PyTorch Comparison/Validation (Planned)
+### [0.9.0] — Stage 8: PyTorch Comparison/Validation (Implemented)
 **Target:** Numerical parity on core operations
 
-### [1.0.0] — MVP Complete (Planned)
-**Target:** Stable API, full documentation, PyPI release
+### [1.0.0] — Stage 9: Research-Grade Validation & Finalization (Implemented)
+**Target:** Repository health, reproducibility, documentation finalization
+
+### [Future] — Stage 10+: Advanced Topics (Planned)
+**Target:** Transformers, LLM fundamentals, advanced training
 
 ---
 

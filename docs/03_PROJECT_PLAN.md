@@ -12,7 +12,7 @@
 | 5 | Neural-Network Mathematics | Layers, activations, losses, embeddings | Stage 1, 3 | ✅ Implemented |
 | 6 | Backpropagation & Training Loops | Autograd, training, validation | Stage 2, 5 | ✅ Implemented |
 | 7 | Experiments & Visualization Suite | Structured experiments, plots, notebooks | Stage 4, 6 | ✅ Implemented |
-| 8 | PyTorch Comparison/Validation | Numerical parity checks | Stage 6 | 📋 Planned |
+| 8 | PyTorch Comparison/Validation | Numerical parity checks | Stage 6 | ✅ Implemented |
 
 ## Milestones & Implementation Order
 

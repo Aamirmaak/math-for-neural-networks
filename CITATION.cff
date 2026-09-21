@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Math for Neural Networks"
+message: "If this toolkit is useful in your research or learning, please cite it."
+type: software
+authors:
+  - name: "Math for Neural Networks Contributors"
+repository-code: "https://github.com/Aamirmaak/math-for-neural-networks"
+license: MIT
+year: 2026
+version: "0.1.0"
+description: "Educational Python toolkit for learning the mathematics behind neural networks through implementation, testing, and numerical verification."
+keywords:
+  - mathematics
+  - neural-networks
+  - machine-learning
+  - education
+  - numerical-verification

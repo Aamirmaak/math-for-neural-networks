@@ -622,3 +622,170 @@ Created 18 educational experiments integrating all previous stages into coherent
 1. Commit Stage 7 to git
 2. Begin Stage 8: PyTorch Comparison & Framework Parity
 3. Implement numerical parity checks between custom and PyTorch implementations
+
+---
+
+## 2026-09-16 — Stage 8: PyTorch Comparison & Framework Parity
+
+**Status:** ✅ IMPLEMENTED + TESTED + VERIFIED
+
+**Summary:**
+Created 49 comparison tests verifying our manual NumPy implementations against PyTorch. PyTorch is installed as an optional dependency — the core toolkit works without it. All tests verify mathematical parity for affine transformations, activation functions, softmax, loss functions, gradient computations, small neural networks, and optimizer updates. A pre-existing flaky test in autograd topological sort was fixed.
+
+**Artifacts Created/Modified:**
+
+### New Files
+- `tests/comparison/conftest.py` — Skip markers, assert_close utilities
+- `tests/comparison/test_pytorch_linear.py` — 6 tests (affine transform parity)
+- `tests/comparison/test_pytorch_activations.py` — 10 tests (sigmoid, tanh, ReLU, GELU)
+- `tests/comparison/test_pytorch_softmax.py` — 8 tests (softmax, log-softmax stability)
+- `tests/comparison/test_pytorch_losses.py` — 8 tests (MSE, BCE, CCE, CE+logits)
+- `tests/comparison/test_pytorch_gradients.py` — 9 tests (affine, activation, softmax+CE, sigmoid+BCE, network gradients)
+- `tests/comparison/test_pytorch_network.py` — 3 tests (2-layer network parity)
+- `tests/comparison/test_pytorch_optimizers.py` — 5 tests (SGD, Momentum, Adam)
+- `examples/pytorch_comparison/from_scratch_vs_pytorch.py` — Educational side-by-side example
+- `docs/15_PYTORCH_COMPARISON.md` — Framework comparison documentation
+
+### Modified Files
+- `pyproject.toml` — Added optional `comparison` dependency group (torch>=2.0.0)
+- `tests/test_autograd/test_value.py` — Fixed flaky topological sort test
+
+**Milestones Completed:**
+- 8.1: Optional PyTorch dependency configured ✅
+- 8.2: Affine transformation parity ✅
+- 8.3: Activation function parity ✅
+- 8.4: Softmax parity ✅
+- 8.5: Loss function parity ✅
+- 8.6: Gradient comparison ✅
+- 8.7: Small neural network parity ✅
+- 8.8: Optimizer comparison ✅
+- 8.9: Educational example ✅
+- 8.10: Documentation ✅
+
+**Verification Results:**
+- 752 tests passing (49 new comparison tests + 703 existing, 0 failures)
+- All comparison tests pass with near-machine-epsilon errors (< 1e-15 for float64)
+- Forward output max error: 5.55e-17
+- Gradient max errors: < 1e-16
+- Ruff: all checks passed
+- Mypy: no issues found (38 source files)
+- Educational example runs successfully
+
+**Key Comparison Results:**
+- Affine: forward output identical to `nn.Linear` (error < 1e-15)
+- Sigmoid, tanh, ReLU: forward and derivative match PyTorch autograd
+- GELU: matches PyTorch approximate GELU (tanh mode)
+- Softmax: handles large positive/negative logits, sums to 1
+- MSE: loss and gradient match PyTorch
+- BCE: gradient identity verified (sigma(z) - y) / n
+- Softmax+CE: gradient = softmax(z) - y (scaled by batch size convention)
+- 2-layer network: forward, loss, and gradients all match
+- SGD, Momentum, Adam: single-step and multi-step parity verified
+
+**Convention Differences Documented:**
+- `softmax_backward` returns (probs - targets) without 1/n factor
+- PyTorch `cross_entropy(reduction="mean")` includes 1/n in gradient
+- CCE clips predictions to [1e-15, inf) vs PyTorch's log-sum-exp
+
+**Learnings:**
+- PyTorch's autograd computes EXACTLY the same gradients as manual backpropagation
+- The mathematics is identical — frameworks automate the engineering
+- Understanding the math makes you a better framework user
+- Optional dependency pattern works well for comparison code
+- Convention differences (reduction, eps) are the main source of apparent mismatches
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 8 to git
+2. Consider Stage 9: Research-Grade Validation & Finalization
+
+---
+
+## 2026-09-16 — Stage 9: Research-Grade Validation & Finalization
+
+**Status:** ✅ COMPLETE
+
+**Summary:**
+Completed final validation, documentation, and repository finalization. Audited repository health, cleaned up 10 duplicate legacy experiment files, fixed version mismatch, added 62 mathematical property tests covering fundamental mathematical laws (vector properties, matrix properties, activation properties, softmax properties, loss properties, probability properties, numerical stability). Verified reproducibility of training pipeline with identical seed. Created experiment registry, final validation report, and updated all documentation to v1.0.0.
+
+**Artifacts Created:**
+- `tests/test_mathematical_properties.py` — 62 property tests
+- `docs/16_EXPERIMENT_REGISTRY.md` — Complete catalog of all experiments
+- `docs/FINAL_VALIDATION_REPORT.md` — Full validation summary
+
+**Verification Results:**
+- 814 tests passing, 0 failing
+- ruff check: clean
+- ruff format: all files formatted
+- mypy: no issues in 38 source files
+- Reproducibility: identical results with same seed (max error < 1e-15)
+- Mathematical properties: 62/62 passing
+- PyTorch parity: max error 5.55e-17
+
+**Key Changes:**
+- Removed 10 duplicate legacy experiment files (activation_comparison, attention_scaling, cross_entropy_loss, learning_rate_effect, manual_vs_numerical, momentum_vs_gd, optimizer_comparison, softmax_stability, toy_network_training, vanishing_gradient)
+- Fixed version mismatch: pyproject.toml 0.1.0 → 1.0.0, __init__.py 0.8.0 → 1.0.0
+- Updated README status to Stage 9
+- Updated __init__.py status to Stage 9
+
+**Learnings:**
+- Mathematical property tests catch subtle bugs and verify fundamental laws
+- Reproducibility verification is essential for research-grade code
+- Repository health audits prevent accumulation of dead code and stale documentation
+- The project is now stable at 814 tests across all stages
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 9 to git (DO NOT auto-commit)
+2. Consider Stage 10: Transformers & Advanced Topics (if planned)
+
+---
+
+## 2026-09-21 — Stage 10: Portfolio-Grade Packaging & Release Readiness
+
+**Status:** ✅ COMPLETE
+
+**Summary:**
+Completed full repository audit, packaging validation, documentation finalization, and release readiness. Version corrected from 1.0.0 to 0.1.0 (pre-alpha, no public release). README completely rewritten with mathematical roadmap, quick start, project status. Added GitHub Actions CI (Python 3.10-3.13). Created CITATION.cff, RELEASE_CHECKLIST.md. Fixed pyproject.toml for PEP 639 compliance (SPDX license). Package builds clean (wheel + sdist), twine check passes, wheel installs and imports correctly.
+
+**Artifacts Created:**
+- `.github/workflows/ci.yml` — GitHub Actions CI workflow
+- `CITATION.cff` — Citation metadata
+- `docs/RELEASE_CHECKLIST.md` — Pre-release checklist
+- `README.md` — Complete rewrite
+
+**Verification Results:**
+- 814 tests passing, 0 failing
+- ruff check: clean
+- ruff format: all files formatted
+- mypy: no issues in 38 source files
+- Coverage: 91%
+- Package build: wheel + sdist both build successfully
+- twine check: PASSED for both artifacts
+- Wheel install: imports and runs correctly
+- Editable install: works
+- Version: 0.1.0 consistent across pyproject.toml and __init__.py
+
+**Key Changes:**
+- Version 1.0.0 → 0.1.0 (corrected for pre-alpha status)
+- pyproject.toml: license format updated to SPDX, deprecated classifier removed
+- README: complete rewrite with professional structure
+- CONTRIBUTING.md: fixed broken pre-commit reference
+- Added GitHub Actions CI
+- Added CITATION.cff
+- Added RELEASE_CHECKLIST.md
+
+**Learnings:**
+- setuptools 84.0.0 enforces PEP 639 license expressions
+- License classifiers are deprecated in favor of SPDX expressions
+- Package builds cleanly with no warnings after fixing license format
+- Wheel contains only package code, LICENSE, METADATA — no secrets or unnecessary files
+
+**Blockers:** None
+
+**Next Steps:**
+1. Commit Stage 10 to git (DO NOT auto-commit)
+2. Push to GitHub when ready
+3. Consider Stage 11: Transformers & Advanced Topics (if planned)

@@ -24,9 +24,6 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
 # Install in development mode with all dev dependencies
 pip install -e ".[dev]"
-
-# Install pre-commit hooks (optional but recommended)
-pre-commit install
 ```
 
 ## Code Standards
@@ -34,7 +31,7 @@ pre-commit install
 - **Python >= 3.10** — Use modern type hints (`list[]`, `X | Y`, etc.)
 - **Type hints required** — All public functions must have type annotations
 - **NumPy for numerics** — Core mathematics uses NumPy only (no PyTorch/JAX in core)
-- **Ruff for linting/formatting** — `ruff check . && ruff format .`
+- **Ruff for linting/formatting** — `ruff check src/ && ruff format src/`
 - **Mypy strict mode** — `mypy src/` must pass
 - **Tests required** — New functionality must include tests
 
@@ -58,7 +55,7 @@ pytest -m integration # Integration tests
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/your-feature`)
 3. Make your changes with tests
-4. Ensure all checks pass: `ruff check . && ruff format . && mypy src/ && pytest`
+4. Ensure all checks pass: `ruff check src/ && ruff format --check src/ && mypy src/ && pytest`
 5. Update relevant documentation
 6. Submit a pull request
 
